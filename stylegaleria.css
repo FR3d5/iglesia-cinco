@@ -1,0 +1,343 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; 
+}
+html,
+body {
+ background-image: url(./public/img/technology.jpg);
+  width: 100%;
+  height: 100%;
+  overflow: hidden; 
+  position: relative;
+  display: flex;
+  background-repeat: no-repeat;
+  background-size: cover; 
+}
+a{
+   text-decoration: none;
+   text-align: center;
+  font-size: clamp(1rem, 3vw, 1.5rem);
+  top: 2%;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  background-size: 200%;
+  color: #fefefe;
+}
+.flex-container {
+  display: flex;
+  align-items: stretch;
+}
+.flex-container > div {
+  color: white;
+  margin: 5px;
+  text-align: center;
+  line-height: 75px;
+  font-size: 30px;
+  z-index: 2;
+}
+.cruz{
+  position: absolute;
+  border-radius: 3rem;
+  left: 25px;
+  width: 15vh;
+  padding: 10px 10px 10px 10px;
+}
+h1{
+  position: absolute;
+  left: 3%;
+  transform: translateY(85vh);
+  z-index: 1;
+  text-align: center;
+  top: 2%;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  background-size: 200%;
+  color: white;
+}
+h2{
+  position: absolute;
+  left: 3%;
+  transform: translateY(75vh);
+  z-index: 1;
+  text-align: center;
+  top: 2%;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  background-size: 200%;
+  color: white;
+  animation: text-animation 4s infinite;  
+}
+@keyframes text-animation{
+  0%{
+    background-position: 0%;
+  }
+  100%{
+    background-position: 200%;
+  }
+}
+canvas {
+    position: fixed; 
+    right: 2%;
+    display: block;
+    
+  z-index: 0; 
+}
+#viewer {
+  width: 50vw;   /* 50% del ancho de la ventana */
+  height: 100vh; /* alto completo */
+  float: left;   /* para que se acomode al lado */
+}
+#workarea {
+  position: absolute;
+  background-color: aqua;
+  width: 15%; 
+  height: 100%;
+  top: -7%;
+  left: 2.5%;
+  z-index: 10; 
+  background-color: transparent;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; 
+  align-items: flex-start;
+  padding-left: 2%; 
+}
+.svg-wrapper {
+  margin-top: 17px; 
+  margin-bottom: 10px;
+  position: relative;
+  width: 150px;
+  height: 40px;
+  width: clamp(120px, 15vw, 200px);
+  height: clamp(35px, 4vw, 50px);
+  border-radius: 5px;
+}
+
+#shape {
+  stroke-width: 4px;
+  fill: transparent;
+  stroke: #ff9700;
+  stroke-dasharray: 120 400;
+  stroke-dashoffset: -220;
+  transition: 1s all ease;
+}
+#text {
+  margin-top: -35px; 
+  transform: translate(5%);
+}
+
+#text a {
+  text-decoration: none;
+  text-align: center;
+  top: 2%;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  background: linear-gradient(90deg, white, #8c8c8c,white);
+  background-size: 200%;
+  background-clip: text;
+  color: transparent;
+  animation: text-animation 4s infinite; 
+}
+.svg-wrapper:hover #shape {
+  stroke-dasharray: 50 0;
+  stroke-width: 6px;
+  stroke-dashoffset: 0;
+  stroke: #f8b138;
+}
+.mapa{
+  position: absolute;
+  transform: translate(150%,-250%);
+  color: #ffffff;
+  text-align: center;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+.mapa-contenedor {
+  position: absolute; 
+  width: 200%;
+  height: 450%;
+  padding-bottom: 75%;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  box-shadow: 4px 4px 8px rgba(0,0,0,0.9);
+
+}
+
+/* Estilos para el iframe dentro del contenedor */
+.mapa-contenedor iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 5px; 
+}
+.infor{
+  z-index: 1;
+  box-shadow: 0 4px 10px #000;
+  position: absolute;
+  width: 25%;
+  height: 70%;
+  transform: translate(280%);
+  padding: 2%;
+  border-radius: 2vh;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  color: #ffffff;
+}
+.fotos{
+  position: absolute;
+  width: 200px;
+  height: 300px;
+  transform-style: preserve-3d;
+  animation: animate 30s linear infinite;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%) perspective(1000px) rotateY(0deg);
+}
+@keyframes animate{
+  0%{
+    transform: perspective(1000px) rotatey(0deg);
+  }
+  100%{
+    transform: perspective(1000px) rotatey(360deg);
+  }
+}
+.fotos span{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transform-origin: center;
+  transform-style: preserve-3d;
+  transform: rotatey(calc(var(--i)* 45deg)) translatez(400px);
+  -webkit-box-reflect: below 0px linear-gradient(transparent,transparent, #0004);
+}
+.fotos span img{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+}
+.texto-encima {
+    position: absolute;
+    top: 175px;
+    left: 135px; 
+    transform: translate(-195%, -440%); 
+    color: white; 
+    font-weight: bold;
+    z-index: 2; 
+}
+.facebook{
+  color: rgb(246, 244, 244);
+  text-decoration: none;
+  font-weight: 100;
+  font-size: 115%;
+}
+/* Estilo del fondo del modal */
+.modal {
+  display: none; /* Oculta el modal por defecto */
+  position: fixed; /* Lo fija en la pantalla */
+  z-index: 1; /* Asegura que esté encima de todo */
+  left: 0;
+  top: 0;
+  width: 100%; /* Cubre todo el ancho */
+  height: 100%; /* Cubre toda la altura */
+  overflow: auto; /* Permite desplazamiento si el contenido es grande */
+  background-color: rgba(0,0,0,0.4); /* Fondo semi-transparente */
+}
+
+.modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.7);
+        }
+
+        .modal-contenido {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border-radius: 10px;
+            width: 80%;
+            max-width: 500px;
+            position: relative;
+        }
+
+        .cerrar-modal {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .cerrar-modal:hover,
+        .cerrar-modal:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .modal-contenido img {
+            max-width: 100%;
+            height: auto;
+            margin-top: 15px;
+            border-radius: 8px;
+        }
+.row {
+    width: 100%; /* El contenedor ocupa el 100% del ancho de la pantalla */
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    overflow-x: scroll;
+    scrollbar-color: #4a4a4a00 #33333300;
+    max-width: 1200px;
+    max-height: 600px;
+    margin: 0 auto;
+    z-index: 2;
+    transform: translate(-5%,10%);
+}
+/* Estilo para las columnas */
+.column {
+    display: flex;
+    flex-direction: column;
+    flex: 33%; /* Cada columna ocupa el 25% del ancho de la fila */
+    max-width: 25%;
+    padding: 2px 4px;
+    box-sizing: border-box; /* Asegura que el padding se incluya en el ancho */
+}
+
+/* Estilo para las imágenes dentro de las columnas */
+.column img {
+    margin-top: 8px;
+    padding: 3px; /* Usar un valor único para un padding uniforme */
+    width: 100%; /* La imagen ocupa el 100% del ancho de la columna */
+    height: auto; /* La altura se ajusta automáticamente */
+    border-radius: 8px; /* Bordes redondeados */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 1);
+  }
+  .column img:hover {
+            transform: scale(1.05);
+        }
+
+/* Responsive layout para pantallas medianas (tablets) */
+@media (max-width: 800px) {
+    .column {
+        flex: 50%; /* Dos columnas por fila */
+        max-width: 50%;
+    }
+}
+
+/* Responsive layout para pantallas pequeñas (móviles) */
+@media (max-width: 600px) {
+    .column {
+        flex: 100%; /* Una columna por fila (se apilan) */
+        max-width: 100%;
+    }
+}

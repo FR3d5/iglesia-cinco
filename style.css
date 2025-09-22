@@ -1,0 +1,368 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; 
+}
+html,
+body {
+ background-image: url(./public/img/technology.jpg);
+ background-color: #000000;
+  width: 100%;
+  height: 100%;
+  overflow: hidden; 
+  position: relative;
+  display: flex;
+  background-repeat: no-repeat;
+  background-size: cover; 
+}
+a{
+   text-decoration: none;
+   text-align: center;
+  font-size: clamp(1rem, 3vw, 1.5rem);
+  top: 2%;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  background-size: 200%;
+  color: #fefefe;
+}
+.flex-container {
+  display: flex;
+  align-items: stretch;
+}
+.flex-container > div {
+  color: white;
+  margin: 5px;
+  text-align: center;
+  line-height: 75px;
+  font-size: 30px;
+  z-index: 2;
+}
+.cruz{
+  position: absolute;
+  border-radius: 3rem;
+  left: 25px;
+  width: 15vh;
+  padding: 10px 10px 10px 10px;
+}
+h1{
+  position: absolute;
+  left: 3%;
+  transform: translateY(85vh);
+  z-index: 1;
+  text-align: center;
+  top: 2%;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  background-size: 200%;
+  color: white;
+}
+h2{
+  position: absolute;
+  left: 3%;
+  transform: translateY(75vh);
+  z-index: 1;
+  text-align: center;
+  top: 2%;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  background-size: 200%;
+  color: white;
+  animation: text-animation 4s infinite;  
+}
+@keyframes text-animation{
+  0%{
+    background-position: 0%;
+  }
+  100%{
+    background-position: 200%;
+  }
+}
+canvas {
+  width: 80%;
+  height: 80%;
+  display: block; 
+  position: absolute; 
+  top: 0;
+  left: 0;
+  z-index: 0; 
+}
+#viewer {
+  width: 50vw;   /* 50% del ancho de la ventana */
+  height: 100vh; /* alto completo */
+  float: left;   /* para que se acomode al lado */
+}
+#workarea {
+  position: absolute;
+  background-color: aqua;
+  width: 15%; 
+  height: 100%;
+  top: -7%;
+  left: 2.5%;
+  z-index: 10; 
+  background-color: transparent;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; 
+  align-items: flex-start;
+  padding-left: 2%; 
+}
+.svg-wrapper {
+  margin-top: 17px; 
+  margin-bottom: 10px;
+  position: relative;
+  width: 150px;
+  height: 40px;
+  width: clamp(120px, 15vw, 200px);
+  height: clamp(35px, 4vw, 50px);
+  border-radius: 5px;
+}
+
+#shape {
+  stroke-width: 4px;
+  fill: transparent;
+  stroke: #ff9700;
+  stroke-dasharray: 120 400;
+  stroke-dashoffset: -220;
+  transition: 1s all ease;
+}
+#text {
+  margin-top: -35px; 
+  transform: translate(5%);
+}
+
+#text a {
+  text-decoration: none;
+  text-align: center;
+  top: 2%;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  background: linear-gradient(90deg, white, #8c8c8c,white);
+  background-size: 200%;
+  background-clip: text;
+  color: transparent;
+  animation: text-animation 4s infinite; 
+}
+.svg-wrapper:hover #shape {
+  stroke-dasharray: 50 0;
+  stroke-width: 6px;
+  stroke-dashoffset: 0;
+  stroke: #f8b138;
+}
+.mapa{
+  position: absolute;
+  transform: translate(150%,-250%);
+  color: #ffffff;
+  text-align: center;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+.mapa-contenedor {
+  position: absolute; 
+  width: 200%;
+  height: 450%;
+  padding-bottom: 75%;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  box-shadow: 4px 4px 8px rgba(0,0,0,0.9);
+
+}
+
+/* Estilos para el iframe dentro del contenedor */
+.mapa-contenedor iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 5px; 
+}
+.infor{
+  z-index: 1;
+  box-shadow: 0 4px 10px #000;
+  position: absolute;
+  width: 25%;
+  height: 70%;
+  transform: translate(280%);
+  padding: 2%;
+  border-radius: 2vh;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  color: #ffffff;
+}
+.fotos{
+  position: absolute;
+  width: 200px;
+  height: 300px;
+  transform-style: preserve-3d;
+  animation: animate 30s linear infinite;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%) perspective(1000px) rotateY(0deg);
+}
+@keyframes animate{
+  0%{
+    transform: perspective(1000px) rotatey(0deg);
+  }
+  100%{
+    transform: perspective(1000px) rotatey(360deg);
+  }
+}
+.fotos span{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transform-origin: center;
+  transform-style: preserve-3d;
+  transform: rotatey(calc(var(--i)* 45deg)) translatez(400px);
+  -webkit-box-reflect: below 0px linear-gradient(transparent,transparent, #0004);
+}
+.fotos span img{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+}
+.texto-encima {
+    position: absolute;
+    top: 175px;
+    left: 135px; 
+    transform: translate(-195%, -440%); 
+    color: white; 
+    font-weight: bold;
+    z-index: 2; 
+}
+.facebook{
+  color: rgb(246, 244, 244);
+  text-decoration: none;
+  font-weight: 100;
+  font-size: 115%;
+}
+/* Estilo del fondo del modal */
+.modal {
+  display: none; /* Oculta el modal por defecto */
+  position: fixed; /* Lo fija en la pantalla */
+  z-index: 1; /* Asegura que esté encima de todo */
+  left: 0;
+  top: 0;
+  width: 100%; /* Cubre todo el ancho */
+  height: 100%; /* Cubre toda la altura */
+  overflow: auto; /* Permite desplazamiento si el contenido es grande */
+  background-color: rgba(0,0,0,0.4); /* Fondo semi-transparente */
+}
+
+        .modal-contenido {
+            background-color: #fefefe;
+            margin: 8%;
+            padding: 20px;
+            border-radius: 10px;
+            width: 100%;
+            height: 55%;
+            max-width: 700px;
+            position: relative;
+            left: 20%;
+        }
+        .modal-contenido h3{
+          font-size: 2rem;
+        }
+        .modal-contenido h5{
+          font-size: 1.5rem;
+        }
+        .cerrar-modal {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .cerrar-modal:hover,
+        .cerrar-modal:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .modal-contenido img {
+            max-width: 29%;
+            height: auto;
+            margin-left: 25px;
+            margin-right: 65px;
+            border-radius: 8px;
+            float: left;
+        }
+/* ===== Estilos del modal ===== */
+#modal-contacto {
+  display: none; /* Inicialmente oculto */
+  position: fixed;
+  z-index: 10;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.6);
+}
+.cerrar-modal {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  font-size: 28px;
+  cursor: pointer;
+}
+
+/* ===== Estilos generales del formulario ===== */
+form {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* dos columnas */
+  gap: 20px;
+}
+/* Cada campo en columna */
+form label {
+  display: block;
+  font-size: 14px;
+  margin-bottom: 5px;
+  color: #000;
+}
+
+.input, 
+form input[type="text"], 
+form input[type="email"], 
+form textarea, 
+form select{
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid #333;
+  padding: 8px 0;
+  font-size: 14px;
+  outline: none;
+  background: transparent;
+  color: #000;
+}
+form button{
+  width: 100%;
+  border: none;
+  padding: 8px 0;
+  font-size: 14px;
+  outline: none;
+  background: transparent;
+  color: #000;
+}
+form button: :hover{
+  width: 100%;
+  border: none;
+  padding: 8px 0;
+  font-size: 14px;
+  outline: none;
+  background-color: #000;
+  color: #ffffff;
+}
+form input::placeholder,
+form textarea::placeholder {
+  color: #aaa;
+  font-size: 14px;
+}
+
+/* Mensaje ocupa todo el ancho */
+form textarea,
+form input[placeholder*="mensaje"] {
+  grid-column: span 2;
+  resize: none;
+}

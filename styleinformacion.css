@@ -1,0 +1,207 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; 
+}
+html,
+body {
+ background-image: url(./public/img/technology.jpg);
+  width: 100%;
+  height: 100%;
+  overflow: hidden; 
+  position: relative;
+  display: flex;
+  background-repeat: no-repeat;
+  background-size: cover; 
+}
+a{
+   text-decoration: none;
+   text-align: center;
+  font-size: clamp(1rem, 3vw, 1.5rem);
+  top: 2%;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  background-size: 200%;
+  color: #fefefe;
+}
+.flex-container {
+  display: flex;
+  align-items: stretch;
+}
+.flex-container > div {
+  color: white;
+  margin: 5px;
+  text-align: center;
+  line-height: 75px;
+  font-size: 30px;
+  z-index: 2;
+}
+.cruz{
+  position: absolute;
+  border-radius: 3rem;
+  left: 25px;
+  width: 15vh;
+  padding: 10px 10px 10px 10px;
+}
+h1{
+  position: absolute;
+  left: 3%;
+  transform: translateY(85vh);
+  z-index: 1;
+  text-align: center;
+  top: 2%;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  background-size: 200%;
+  color: white;
+}
+h2{
+  position: absolute;
+  left: 3%;
+  transform: translateY(75vh);
+  z-index: 1;
+  text-align: center;
+  top: 2%;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  background-size: 200%;
+  color: white;
+  animation: text-animation 4s infinite;  
+}
+@keyframes text-animation{
+  0%{
+    background-position: 0%;
+  }
+  100%{
+    background-position: 200%;
+  }
+}
+canvas {
+  width: 80%;
+  height: 80%;
+  display: block; 
+  position: absolute; 
+  top: 0;
+  left: 11vw;/*posision horizontal*/
+  z-index: 0; 
+}
+#viewer {
+  width: 50vw;   /* 50% del ancho de la ventana */
+  height: 100vh; /* alto completo */
+  float: left;   /* para que se acomode al lado */
+}
+#workarea {
+  position: absolute;
+  background-color: aqua;
+  width: 15%; 
+  height: 100%;
+  top: -7%;
+  left: 2.5%;
+  z-index: 10; 
+  background-color: transparent;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; 
+  align-items: flex-start;
+  padding-left: 2%; 
+}
+.svg-wrapper {
+  margin-top: 17px; 
+  margin-bottom: 10px;
+  position: relative;
+  width: 150px;
+  height: 40px;
+  width: clamp(120px, 15vw, 200px);
+  height: clamp(35px, 4vw, 50px);
+  border-radius: 5px;
+}
+
+#shape {
+  stroke-width: 4px;
+  fill: transparent;
+  stroke: #ff9700;
+  stroke-dasharray: 120 400;
+  stroke-dashoffset: -220;
+  transition: 1s all ease;
+}
+#text {
+  margin-top: -35px; 
+  transform: translate(5%);
+}
+
+#text a {
+  text-decoration: none;
+  text-align: center;
+  top: 2%;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  background: linear-gradient(90deg, white, #8c8c8c,white);
+  background-size: 200%;
+  background-clip: text;
+  color: transparent;
+  animation: text-animation 4s infinite; 
+}
+.svg-wrapper:hover #shape {
+  stroke-dasharray: 50 0;
+  stroke-width: 6px;
+  stroke-dashoffset: 0;
+  stroke: #f8b138;
+}
+.mapa{
+  position: absolute;
+  transform: translate(150%,-247%);
+  color: #ffffff;
+  top: 30%;
+  text-align: center;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+.mapa-contenedor {
+  position: absolute; 
+  width: 45VW;
+  height: 65vh;
+
+  padding-bottom: 75%;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  box-shadow: 4px 4px 8px rgba(0,0,0,0.9);
+  background-color: #ffffff05;
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(25px);
+}
+
+/* Estilos para el iframe dentro del contenedor */
+.mapa-contenedor iframe {
+  position: absolute;
+  
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 8px; 
+}
+.infor{
+  z-index: 1;
+  box-shadow: 0 4px 10px #000;
+  position: absolute;
+  top: 15%;
+  right: 1%;
+  padding: 2%;
+  border-radius: 2vh;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  color: #ffffff;
+  background-color: #ffffff05;
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(25px);
+}
+
+.texto-encima {
+    position: absolute;
+    top: 175px;
+    left: 135px; 
+    transform: translate(-195%, -440%); 
+    color: white; 
+    font-weight: bold;
+    z-index: 2; 
+}
+.facebook{
+  color: rgb(21, 0, 255);
+  text-decoration: none;
+  font-weight: 100;
+  font-size: 115%;
+}

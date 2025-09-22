@@ -1,0 +1,105 @@
+<!doctype html>
+<html>
+<head>
+  <title>prototipo 3</title>
+  <link rel="stylesheet" media="all" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+<header style="width: 100%;">
+    <div class="flex-container">
+      <div style="flex-grow: 8;"><img class="cruz" src="./public/img/logo.jpg"></div>
+    <div style="flex-grow: 1;"><a href="#" id="abrir-modal-sobre-mi">SOBRE MÍ</a></div>
+    <div style="flex-grow: 1;"><a href="#" id="abrir-modal-contacto">CONTACTO</a></div>
+    </div>
+</header>
+
+<!-- Modal para "SOBRE MÍ" -->
+<div id="modal-sobre-mi" class="modal">
+    <div class="modal-contenido">
+        <span class="cerrar-modal">&times;</span>
+        
+        <img src="./public/img/fotofreds.jpg" alt="Foto de contacto">
+        <h3>Freds Cazorla juyari</h3><br><br>
+        <h5><i class="fa-solid fa-phone"></i>  63467676</h5><br>
+        <h5><i class="fa-solid fa-envelope"></i>  fredsc.juyari@gmail.com</h5><br>
+        <h5><i class="fa-solid fa-location-dot"></i>  Enrrique Fernandez Nro. 38</h5><br>
+        soy estudiante de la carrera ingenieria informatica de cuarto año que esta aprendiendo a realizar 
+        paginas web con la incorporacion de modelos 3d
+    </div>
+</div>
+
+<!-- Modal para "CONTACTO" -->
+<div id="modal-contacto" class="modal">
+    <div class="modal-contenido">
+        <span class="cerrar-modal">&times;</span>
+        <h2 style="top: -150%;">QUE PODEMOS HACER POR USTED?</h2>
+        <form action="">
+          <label>Nombre*</label>
+          <input class="input" type="text" placeholder="freds">
+
+          <label>Apellido*</label>
+          <input class="input" type="text" placeholder="Cazorla juyari">
+
+          <label>Correo electrónico*</label>
+          <input class="input" type="email" placeholder="tu@email.com">
+
+          <label>Teléfono*</label>
+          <input class="input" type="text" placeholder="+459 73345667">
+          
+          <label>Tu mensaje*</label>
+          <textarea placeholder="Describe tu mensaje"></textarea>
+          o contactanos al siguiente numero* 73812554
+          <button>Enviar</button>
+        </form>
+
+    </div>
+</div>
+<h2>INICIO</h2>
+  <h1>PARROQUIA "NUESTRA SEÑORA DE LA ASUNCION"</h1>
+<div id="workarea">
+  <div class="position">
+
+    <div class="svg-wrapper">
+      <svg height="40" width="150">
+        <rect id="shape" height="40" width="150" />
+        <div id="text">
+          <a href="index.html"><span class="spot"></span>Inicio</a>
+        </div>
+      </svg>
+    </div>
+    
+    <div class="svg-wrapper">
+      <svg height="40" width="150">
+        <rect id="shape" height="40" width="150" />
+        <div id="text">
+          <a href="galeria.html"><span class="spot"></span>Galeria</a>
+        </div>
+      </svg>
+    </div>
+    
+    <div class="svg-wrapper">
+      <svg height="40" width="150">
+        <rect id="shape" height="40" width="150" />
+        <div id="text">
+          <a href="informacion.html"><span class="spot"></span>Informacion</a>
+        </div>
+      </svg>
+    </div>
+
+    <div class="svg-wrapper">
+      <svg height="40" width="150">
+        <rect id="shape" height="40" width="150" />
+        <div id="text">
+          <a href="interior.html"><span class="spot"></span>Interior</a>
+        </div>
+      </svg>
+    </div>
+
+  </div>
+</div>
+  <script type="module" src="script.js"></script>
+</body>
+
+</html>
