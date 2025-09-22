@@ -53,7 +53,7 @@
 
         // --- CÓDIGO CLAVE PARA CARGAR EL MODELO ---
         const loader = new GLTFLoader();
-        loader.load('https://drive.google.com/file/d/1QGOe9DNFzbAEVNe0cD9WI6FjhGejC1Lw/view?usp=sharing', gltf =>{
+        loader.load('./public/modelos/parteinterior.glb', function (gltf){
             const model = gltf.scene;
             scene.add(model);
             
