@@ -3,21 +3,24 @@
   padding: 0;
   box-sizing: border-box; 
 }
+
+/* Estilos Base para todas las pantallas */
 html,
 body {
- background-image: url(./public/img/technology.jpg);
- background-color: #000000;
+  background-image: url(./public/img/technology.jpg);
+  background-color: #000000;
   width: 100%;
   height: 100%;
-  overflow: hidden; 
+  /* Importante: Mantener overflow: hidden solo para escritorio si es necesario */
+  overflow-x: hidden; 
   position: relative;
   display: flex;
   background-repeat: no-repeat;
   background-size: cover; 
 }
 a{
-   text-decoration: none;
-   text-align: center;
+  text-decoration: none;
+  text-align: center;
   font-size: clamp(1rem, 3vw, 1.5rem);
   top: 2%;
   font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
@@ -27,6 +30,7 @@ a{
 .flex-container {
   display: flex;
   align-items: stretch;
+  width: 100%;
 }
 .flex-container > div {
   color: white;
@@ -36,13 +40,17 @@ a{
   font-size: 30px;
   z-index: 2;
 }
+
+/* Elemento fijo/ícono. Mantenemos posición absoluta en desktop */
 .cruz{
   position: absolute;
   border-radius: 3rem;
   left: 25px;
   width: 15vh;
-  padding: 10px 10px 10px 10px;
+  padding: 10px;
 }
+
+/* Títulos: Posición absoluta en desktop */
 h1{
   position: absolute;
   left: 3%;
@@ -74,6 +82,8 @@ h2{
     background-position: 200%;
   }
 }
+
+/* Canvas/Visualizador 3D: Se ajustará automáticamente en mobile */
 canvas {
   width: 80%;
   height: 80%;
@@ -88,9 +98,10 @@ canvas {
   height: 100vh; /* alto completo */
   float: left;   /* para que se acomode al lado */
 }
+
+/* Área de trabajo/Menú lateral (en escritorio) */
 #workarea {
   position: absolute;
-  background-color: aqua;
   width: 15%; 
   height: 100%;
   top: -7%;
@@ -108,13 +119,10 @@ canvas {
   margin-top: 17px; 
   margin-bottom: 10px;
   position: relative;
-  width: 150px;
-  height: 40px;
   width: clamp(120px, 15vw, 200px);
   height: clamp(35px, 4vw, 50px);
   border-radius: 5px;
 }
-
 #shape {
   stroke-width: 4px;
   fill: transparent;
@@ -127,7 +135,6 @@ canvas {
   margin-top: -35px; 
   transform: translate(5%);
 }
-
 #text a {
   text-decoration: none;
   text-align: center;
@@ -145,55 +152,7 @@ canvas {
   stroke-dashoffset: 0;
   stroke: #f8b138;
 }
-.mapa{
-  position: absolute;
-  transform: translate(150%,-250%);
-  color: #ffffff;
-  text-align: center;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
-}
-.mapa-contenedor {
-  position: absolute; 
-  width: 200%;
-  height: 450%;
-  padding-bottom: 75%;
-  margin-bottom: 20px;
-  border-radius: 10px;
-  box-shadow: 4px 4px 8px rgba(0,0,0,0.9);
 
-}
-
-/* Estilos para el iframe dentro del contenedor */
-.mapa-contenedor iframe {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  border-radius: 5px; 
-}
-.infor{
-  z-index: 1;
-  box-shadow: 0 4px 10px #000;
-  position: absolute;
-  width: 25%;
-  height: 70%;
-  transform: translate(280%);
-  padding: 2%;
-  border-radius: 2vh;
-  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-  color: #ffffff;
-}
-.fotos{
-  position: absolute;
-  width: 200px;
-  height: 300px;
-  transform-style: preserve-3d;
-  animation: animate 30s linear infinite;
-  top: 30%;
-  left: 50%;
-  transform: translate(-50%, -50%) perspective(1000px) rotateY(0deg);
-}
 @keyframes animate{
   0%{
     transform: perspective(1000px) rotatey(0deg);
@@ -237,61 +196,185 @@ canvas {
   font-weight: 100;
   font-size: 115%;
 }
-/* Estilo del fondo del modal */
+/* =================================================== */
+/* Bloque Media Query: Estilos para Móviles (hasta 768px) */
+/* =================================================== */
+
+@media screen and (max-width: 768px) {
+  /* 1. Resetear el cuerpo para permitir el scroll vertical */
+html,
+body {
+  background-image: url(./public/img/technology.jpg);
+  width: 100%;
+  height: 100%;
+}
+  
+  /* 2. El área de trabajo (menú) debe ser la primera y ocupar todo el ancho */
+  .menu-toggle {
+                display: flex;
+                position: fixed; /* Se mantiene visible al hacer scroll */
+                top: 70%;
+                left: 15px;
+                background: #ff9700;
+                padding: 10px;
+                border-radius: 8px;
+                z-index: 11; /* Siempre encima */
+                cursor: pointer;
+                box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+            }
+  #workarea {
+                /* Anulamos la posición de escritorio */
+                position: fixed !important; 
+                width: 40% !important; /* Ocupa la mayor parte de la pantalla */
+                height: 100% !important;
+                top: 0 !important;
+                left: -100% !important; /* OCULTAR FUERA DE PANTALLA */
+                z-index: 10;
+                /* El padding y flex-direction se mantienen para una lista vertical */
+                flex-direction: column;
+                justify-content: flex-start;
+                padding-top: 60px; /* Espacio para el botón de cierre */
+                transition: left 0.1s ease-in-out; /* Transición suave */
+                background-color: #000000b7;
+            }
+            
+            /* 3b. Clase para mostrar la Pestaña */
+            #workarea.workarea-open {
+                left: 0 !important; /* MOSTRAR */
+            }
+
+  /* Ajustamos los wrappers SVG para que no usen unidades vw */
+  .svg-wrapper {
+      width: 100px;
+      height: 35px;
+      margin: 50px 0;
+      top: 50%;
+  }
+  .svg-wrapper:first-child {
+      margin-left: 0;
+  }
+  .svg-wrapper:last-child {
+      margin-right: 0;
+  }
+  
+  /* 3. Títulos: Ponerlos en posición normal y visibles */
+  h1, h2 {
+    position: absolute; /* Se mueven con el flujo */
+    left: 5%;
+    width: 90%;
+    text-align: left;
+    font-size: 1.4rem; /* Reducimos el tamaño de la fuente */
+    z-index: 1;
+
+  }
+  h3{
+    left: 5%;
+    width: 90%;
+    text-align: left;
+    font-size: 1.2rem; /* Reducimos el tamaño de la fuente */
+    z-index: 1;
+  }
+  /* 5. Ícono/Cruz: Reposicionarlo o simplificarlo */
+  .cruz {
+    position: relative;
+    left: -35%;
+    top: 15%;
+    width: 6vh;
+    z-index: 12;
+  }
+  /* 8. Estilos para el Modal (ajustamos el contenido para móvil) */
+  .modal-contenido {
+    margin: 3% auto;
+    width: 90%;
+    max-width: 90%;
+    left: -10%; /* Centramos quitando el left fijo */
+    height: auto;
+  }
+  .modal-contenido img {
+    float: left;
+    max-width: 100%; /* Imagen a ancho completo */
+    float: none;
+    margin: 3px 0;
+    display: block;
+  }
+  .modal-contenido h3, .modal-contenido h5 {
+    text-align: left;
+  }
+  .texto-encima {
+    position: relative;
+    top: auto;
+    left: auto;
+    transform: none;
+    text-align: center;
+    margin: 10px 0;
+  }
+
+  /* Formulario del Modal */
+  form {
+    grid-template-columns: 1fr; /* Una sola columna para los campos */
+    gap: 9px;
+  }
+  form textarea,
+  form input[placeholder*="mensaje"] {
+      grid-column: span 1; /* El mensaje ahora ocupa solo una columna */
+  }
+}
+/* Fin de los estilos del modal */
 .modal {
-  display: none; /* Oculta el modal por defecto */
-  position: fixed; /* Lo fija en la pantalla */
-  z-index: 1; /* Asegura que esté encima de todo */
+  display: none; 
+  position: fixed; 
+  z-index: 1; 
   left: 0;
   top: 0;
-  width: 100%; /* Cubre todo el ancho */
-  height: 100%; /* Cubre toda la altura */
-  overflow: auto; /* Permite desplazamiento si el contenido es grande */
-  background-color: rgba(0,0,0,0.4); /* Fondo semi-transparente */
+  width: 100%; 
+  height: 100%; 
+  overflow: auto; 
 }
 
-        .modal-contenido {
-            background-color: #fefefe;
-            margin: 8%;
-            padding: 20px;
-            border-radius: 10px;
-            width: 100%;
-            height: 55%;
-            max-width: 700px;
-            position: relative;
-            left: 20%;
-        }
-        .modal-contenido h3{
-          font-size: 2rem;
-        }
-        .modal-contenido h5{
-          font-size: 1.5rem;
-        }
-        .cerrar-modal {
-            color: #aaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-        }
+.modal-contenido {
+  background-color: #fefefe;
+  margin: 8% auto; /* Centrado en desktop */
+  padding: 20px;
+  border-radius: 10px;
+  width: 85%;
+  height: 45%;
+  max-width: 700px;
+  position: relative;
+  top: 15%;
+  left: 1%;
+  z-index: 99;
+}
+.modal-contenido h3{
+  font-size: 2rem;
+}
+.modal-contenido h5{
+  font-size: 1.5rem;
+}
+.cerrar-modal {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
 
-        .cerrar-modal:hover,
-        .cerrar-modal:focus {
-            color: black;
-            text-decoration: none;
-            cursor: pointer;
-        }
+.cerrar-modal:hover,
+.cerrar-modal:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
 
-        .modal-contenido img {
-            max-width: 29%;
-            height: auto;
-            margin-left: 25px;
-            margin-right: 65px;
-            border-radius: 8px;
-            float: left;
-        }
+.modal-contenido img {
+  max-width: 29%;
+  height: auto;
+  margin-left: 25px;
+  margin-right: 65px;
+  border-radius: 8px;
+  float: left;
+}
 /* ===== Estilos del modal ===== */
 #modal-contacto {
-  display: none; /* Inicialmente oculto */
+  display: none; 
   position: fixed;
   z-index: 10;
   left: 0;
@@ -308,10 +391,10 @@ canvas {
   cursor: pointer;
 }
 
-/* ===== Estilos generales del formulario ===== */
+/* ===== Estilos generales del formulario (Desktop) ===== */
 form {
   display: grid;
-  grid-template-columns: 1fr 1fr; /* dos columnas */
+  grid-template-columns: 1fr 1fr;
   gap: 20px;
 }
 /* Cada campo en columna */
@@ -345,7 +428,7 @@ form button{
   background: transparent;
   color: #000;
 }
-form button: :hover{
+form button:hover{
   width: 100%;
   border: none;
   padding: 8px 0;
@@ -366,3 +449,4 @@ form input[placeholder*="mensaje"] {
   grid-column: span 2;
   resize: none;
 }
+

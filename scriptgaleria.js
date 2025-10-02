@@ -24,6 +24,9 @@ function init() {
     // Renderizador
     renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
     renderer.setSize(window.innerWidth*0.2, window.innerHeight);
+    if(window.innerWidth < 676){
+        renderer.setSize(window.innerWidth, window.innerHeight*0.6);
+    }
     document.body.appendChild(renderer.domElement);
 
     // Cámara
@@ -42,7 +45,6 @@ function init() {
         const model = gltf.scene;
         scene.add(model);
 
-        // Animaciones
         if (gltf.animations && gltf.animations.length) {
             mixer = new THREE.AnimationMixer(model);
             const action = mixer.clipAction(gltf.animations[0]);
@@ -58,6 +60,10 @@ function init() {
 
         model.rotation.y = 4.5;
         model.scale.set(65,25,65);
+        if(window.innerWidth < 676){
+            model.scale.set(35,25,35);
+            model.position.set(0,-5,0);
+        }
 
         // Ajustar cámara y controles al centro del modelo
         const box = new THREE.Box3().setFromObject(model);
@@ -68,7 +74,6 @@ function init() {
         controls.update();
     });
 
-    // Redimensionamiento
     window.addEventListener('resize', onWindowResize);
 }
 
@@ -78,7 +83,6 @@ function animate() {
     const delta = clock.getDelta();
     if (mixer) mixer.update(delta);
 
-    //controls.update(); 
     renderer.render(scene, camera);
 }
 
@@ -92,7 +96,6 @@ var abrirBotones = document.querySelectorAll('a[id^="abrir-modal-"]');
     var cerrarBotones = document.querySelectorAll('.cerrar-modal');
     var modales = document.querySelectorAll('.modal');
 
-    // Función para abrir un modal
     function abrirModal(modalId) {
         var modal = document.getElementById(modalId);
         if (modal) {
@@ -100,22 +103,18 @@ var abrirBotones = document.querySelectorAll('a[id^="abrir-modal-"]');
         }
     }
 
-    // Función para cerrar un modal
     function cerrarModal(modalElement) {
         modalElement.style.display = 'none';
     }
 
-    // Agregar evento a cada botón de "abrir"
     abrirBotones.forEach(btn => {
         btn.addEventListener('click', (event) => {
-            event.preventDefault(); // Evita que el enlace salte
-            // Obtiene el ID del modal a abrir del ID del enlace
+            event.preventDefault();
             const modalId = btn.id.replace('abrir-', '');
             abrirModal(modalId);
         });
     });
 
-    // Agregar evento a cada botón de "cerrar" (la X)
     cerrarBotones.forEach(btn => {
         btn.addEventListener('click', () => {
             const modal = btn.closest('.modal');
@@ -125,7 +124,6 @@ var abrirBotones = document.querySelectorAll('a[id^="abrir-modal-"]');
         });
     });
 
-    // Cerrar el modal al hacer clic fuera de él
     window.addEventListener('click', (event) => {
         modales.forEach(modal => {
             if (event.target === modal) {
@@ -133,3 +131,9 @@ var abrirBotones = document.querySelectorAll('a[id^="abrir-modal-"]');
             }
         });
     });
+const menu = document.querySelector('#workarea');
+const toggle = document.querySelector('.menu-toggle');
+
+toggle.addEventListener('click', () => {
+  menu.classList.toggle('workarea-open');
+});

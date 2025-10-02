@@ -42,7 +42,6 @@ function init() {
         const model = gltf.scene;
         scene.add(model);
 
-        // Animaciones
         if (gltf.animations && gltf.animations.length) {
             mixer = new THREE.AnimationMixer(model);
             const action = mixer.clipAction(gltf.animations[0]);
@@ -64,11 +63,13 @@ function init() {
         const center = new THREE.Vector3();
         box.getCenter(center);
         camera.position.set(center.x+3, center.y + 5, center.z + 20);
+        if (window.innerWidth < 768) {
+            camera.position.z = 35;
+    }
         controls.target.copy(center);
         controls.update();
     });
 
-    // Redimensionamiento
     window.addEventListener('resize', onWindowResize);
 }
 
@@ -78,7 +79,6 @@ function animate() {
     const delta = clock.getDelta();
     if (mixer) mixer.update(delta);
 
-    //controls.update(); 
     renderer.render(scene, camera);
 }
 
@@ -92,7 +92,6 @@ var abrirBotones = document.querySelectorAll('a[id^="abrir-modal-"]');
     var cerrarBotones = document.querySelectorAll('.cerrar-modal');
     var modales = document.querySelectorAll('.modal');
 
-    // Función para abrir un modal
     function abrirModal(modalId) {
         var modal = document.getElementById(modalId);
         if (modal) {
@@ -100,22 +99,17 @@ var abrirBotones = document.querySelectorAll('a[id^="abrir-modal-"]');
         }
     }
 
-    // Función para cerrar un modal
     function cerrarModal(modalElement) {
         modalElement.style.display = 'none';
     }
 
-    // Agregar evento a cada botón de "abrir"
     abrirBotones.forEach(btn => {
         btn.addEventListener('click', (event) => {
-            event.preventDefault(); // Evita que el enlace salte
-            // Obtiene el ID del modal a abrir del ID del enlace
+            event.preventDefault();
             const modalId = btn.id.replace('abrir-', '');
             abrirModal(modalId);
         });
     });
-
-    // Agregar evento a cada botón de "cerrar" (la X)
     cerrarBotones.forEach(btn => {
         btn.addEventListener('click', () => {
             const modal = btn.closest('.modal');
@@ -124,8 +118,6 @@ var abrirBotones = document.querySelectorAll('a[id^="abrir-modal-"]');
             }
         });
     });
-
-    // Cerrar el modal al hacer clic fuera de él
     window.addEventListener('click', (event) => {
         modales.forEach(modal => {
             if (event.target === modal) {
@@ -133,3 +125,9 @@ var abrirBotones = document.querySelectorAll('a[id^="abrir-modal-"]');
             }
         });
     });
+const menu = document.querySelector('#workarea');
+const toggle = document.querySelector('.menu-toggle');
+
+toggle.addEventListener('click', () => {
+  menu.classList.toggle('workarea-open');
+});

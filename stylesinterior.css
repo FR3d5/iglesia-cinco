@@ -82,9 +82,9 @@ canvas {
   z-index: 0; 
 }
 #viewer {
-  width: 50vw;   /* 50% del ancho de la ventana */
-  height: 100vh; /* alto completo */
-  float: left;   /* para que se acomode al lado */
+  width: 50vw; 
+  height: 100vh;
+  float: left;   
 }
 #workarea {
   position: absolute;
@@ -144,15 +144,15 @@ canvas {
   stroke: #f8b138;
 }
 .modal {
-  display: none; /* Oculta el modal por defecto */
-  position: fixed; /* Lo fija en la pantalla */
-  z-index: 1; /* Asegura que esté encima de todo */
+  display: none; 
+  position: fixed; 
+  z-index: 1; 
   left: 0;
   top: 0;
-  width: 100%; /* Cubre todo el ancho */
-  height: 100%; /* Cubre toda la altura */
-  overflow: auto; /* Permite desplazamiento si el contenido es grande */
-  background-color: rgba(0,0,0,0.4); /* Fondo semi-transparente */
+  width: 100%; 
+  height: 100%; 
+  overflow: auto; 
+  background-color: rgba(0,0,0,0.4);
 }
 
 .modal {
@@ -215,3 +215,202 @@ canvas {
             z-index: 10;
             border-radius: 3rem;
         }
+        .controles-moviles {
+  position: fixed;
+  bottom: 15%;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  z-index: 1000;
+}
+
+.controles-moviles div {
+  display: flex;
+  gap: 20px;
+}
+
+.controles-moviles button {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: none;
+  background: #ff9700;
+  color: white;
+  font-size: 2rem;
+  font-weight: bold;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+}
+@media screen and (max-width: 768px) {
+html,
+body {
+  background-image: url(./public/img/technology.jpg);
+  width: 100%;
+  height: 100%;
+}
+ 
+a{
+   text-decoration: none;
+   text-align: center;
+  font-size: clamp(1rem, 3vw, 1.5rem);
+  top: 2%;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  background-size: 200%;
+  color: #fefefe;
+}
+
+h1{
+  position: absolute;
+  left: 3%;
+  transform: translateY(85vh);
+  z-index: 1;
+  text-align: center;
+  top: 2%;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  background-size: 200%;
+  color: white;
+}
+
+@keyframes text-animation{
+  0%{
+    background-position: 0%;
+  }
+  100%{
+    background-position: 200%;
+  }
+}
+canvas {
+  width: 80%;
+  height: 80%;
+  display: block; 
+  position: absolute; 
+  top: 0;
+  left: 0;
+  z-index: 0; 
+}
+#viewer {
+  width: 50vw; 
+  height: 100vh;
+  float: left;   
+}
+  .menu-toggle {
+                display: flex;
+                position: fixed;
+                top: 70%;
+                left: 15px;
+                background: #ff9700;
+                padding: 10px;
+                border-radius: 8px;
+                z-index: 11;
+                cursor: pointer;
+                box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+            }
+  #workarea {
+                position: fixed !important; 
+                width: 40% !important; 
+                height: 100% !important;
+                top: 0 !important;
+                left: -100% !important;
+                z-index: 10;
+                flex-direction: column;
+                justify-content: flex-start;
+                padding-top: 60px; 
+                transition: left 0.1s ease-in-out; 
+                background-color: #000000b7;
+            }
+            #workarea.workarea-open {
+                left: 0 !important; 
+            }
+.svg-wrapper {
+  margin-top: 17px; 
+  margin-bottom: 10px;
+  position: relative;
+  width: 150px;
+  height: 40px;
+  width: clamp(120px, 15vw, 200px);
+  height: clamp(35px, 4vw, 50px);
+  border-radius: 5px;
+}
+
+#shape {
+  stroke-width: 4px;
+  fill: transparent;
+  stroke: #ff9700;
+  stroke-dasharray: 120 400;
+  stroke-dashoffset: -220;
+  transition: 1s all ease;
+}
+#text {
+  margin-top: -35px; 
+  transform: translate(5%);
+}
+
+#text a {
+  text-decoration: none;
+  text-align: center;
+  top: 2%;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  background: linear-gradient(90deg, white, #8c8c8c,white);
+  background-size: 200%;
+  background-clip: text;
+  color: transparent;
+  animation: text-animation 4s infinite; 
+}
+.svg-wrapper:hover #shape {
+  stroke-dasharray: 50 0;
+  stroke-width: 6px;
+  stroke-dashoffset: 0;
+  stroke: #f8b138;
+}
+
+
+#overlay {
+            position: absolute;
+            top: 80%;
+            left: 70vw;
+            width: 120%;
+            height: 25%;
+            display: flex;
+            background-color: rgba(98, 98, 98, 0.6);
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+            font-size: 2em;
+            text-align: center;
+            cursor: pointer;
+            z-index: 10;
+            border-radius: 3rem;
+        }
+        .controles-moviles {
+  position: fixed;
+  bottom: 15%;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  z-index: 1000;
+}
+
+.controles-moviles div {
+  display: flex;
+  gap: 20px;
+}
+
+.controles-moviles button {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: none;
+  background: #ff9700;
+  color: white;
+  font-size: 2rem;
+  font-weight: bold;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+}
+
+}

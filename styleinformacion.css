@@ -23,25 +23,7 @@ a{
   background-size: 200%;
   color: #fefefe;
 }
-.flex-container {
-  display: flex;
-  align-items: stretch;
-}
-.flex-container > div {
-  color: white;
-  margin: 5px;
-  text-align: center;
-  line-height: 75px;
-  font-size: 30px;
-  z-index: 2;
-}
-.cruz{
-  position: absolute;
-  border-radius: 3rem;
-  left: 25px;
-  width: 15vh;
-  padding: 10px 10px 10px 10px;
-}
+
 h1{
   position: absolute;
   left: 3%;
@@ -205,3 +187,213 @@ canvas {
   font-weight: 100;
   font-size: 115%;
 }
+@media screen and (max-width: 768px) {
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; 
+}
+html,
+body {
+ background-image: url(./public/img/technology.jpg);
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow-y: auto;
+  display: flex;
+  background-repeat: no-repeat;
+  background-size: cover; 
+}
+a{
+   text-decoration: none;
+   text-align: center;
+  font-size: clamp(1rem, 3vw, 1.5rem);
+  top: 2%;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  background-size: 200%;
+  color: #fefefe;
+}
+
+h1{
+  position: absolute;
+  left: 3%;
+  transform: translateY(85vh);
+  z-index: 10;
+  text-align: center;
+  top: -2%;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  background-size: 200%;
+  color: white;
+  width: 10%;
+  height: 60%;  
+}
+h2{
+  position: absolute;
+  left: 3%;
+  transform: translateY(75vh);
+  z-index: 1;
+  text-align: center;
+  top: -600%;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  background-size: 200%;
+  color: white;
+  animation: text-animation 4s infinite;  
+}
+@keyframes text-animation{
+  0%{
+    background-position: 0%;
+  }
+  100%{
+    background-position: 200%;
+  }
+}
+canvas {
+  display: block; 
+  position: absolute; 
+  top: 40%;
+  left: -1%;
+  z-index: 0; 
+}
+#viewer {
+  width: 50vw;   /* 50% del ancho de la ventana */
+  height: 100vh; /* alto completo */
+  float: left;   /* para que se acomode al lado */
+}
+  .menu-toggle {
+                display: flex;
+                position: fixed; /* Se mantiene visible al hacer scroll */
+                top: 70%;
+                left: 15px;
+                background: #ff9700;
+                padding: 10px;
+                border-radius: 8px;
+                z-index: 11; /* Siempre encima */
+                cursor: pointer;
+                box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+            }
+  #workarea {
+                /* Anulamos la posición de escritorio */
+                position: fixed !important; 
+                width: 40% !important; /* Ocupa la mayor parte de la pantalla */
+                height: 100% !important;
+                top: 0 !important;
+                left: -100% !important; /* OCULTAR FUERA DE PANTALLA */
+                z-index: 10;
+                /* El padding y flex-direction se mantienen para una lista vertical */
+                flex-direction: column;
+                justify-content: flex-start;
+                padding-top: 60px; /* Espacio para el botón de cierre */
+                transition: left 0.1s ease-in-out; /* Transición suave */
+                background-color: #000000b7;
+            }
+            
+            /* 3b. Clase para mostrar la Pestaña */
+            #workarea.workarea-open {
+                left: 0 !important; /* MOSTRAR */
+            }
+.svg-wrapper {
+      width: 100px;
+      height: 35px;
+      margin: 50px 0;
+      top: 50%;
+  }
+  .svg-wrapper:first-child {
+      margin-left: 0;
+  }
+  .svg-wrapper:last-child {
+      margin-right: 0;
+  }
+
+#shape {
+  stroke-width: 4px;
+  fill: transparent;
+  stroke: #ff9700;
+  stroke-dasharray: 120 400;
+  stroke-dashoffset: -220;
+  transition: 1s all ease;
+}
+#text {
+  margin-top: -35px; 
+  transform: translate(5%);
+}
+
+#text a {
+  text-decoration: none;
+  text-align: center;
+  top: 2%;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  background: linear-gradient(90deg, white, #8c8c8c,white);
+  background-size: 200%;
+  background-clip: text;
+  color: transparent;
+  animation: text-animation 4s infinite; 
+}
+.svg-wrapper:hover #shape {
+  stroke-dasharray: 50 0;
+  stroke-width: 6px;
+  stroke-dashoffset: 0;
+  stroke: #f8b138;
+}
+.mapa{
+  position: absolute;
+  color: #ffffff;
+  width: 90%;
+  top: 20%;
+  left: -130%;
+  text-align: center;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  z-index: 5;
+}
+.mapa-contenedor {
+  position: absolute; 
+  width: 100%;
+  height: 60%;
+
+  padding-bottom: 75%;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  box-shadow: 4px 4px 8px rgba(0,0,0,0.9);
+  background-color: #ffffff05;
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(25px);
+}
+
+/* Estilos para el iframe dentro del contenedor */
+.mapa-contenedor iframe {
+  position: absolute;
+  
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 8px; 
+}
+.infor{
+  z-index: 5;
+  box-shadow: 0 4px 10px #000;
+  position: absolute;
+  top: 90%;
+  left: 5%;
+  padding: 2%;
+  border-radius: 2vh;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  color: #ffffff;
+  background-color: #ffffff05;
+  backdrop-filter: blur(7px);
+  -webkit-backdrop-filter: blur(25px);
+}
+
+.texto-encima {
+    position: absolute;
+    top: 175px;
+    left: 135px; 
+    transform: translate(-195%, -440%); 
+    color: white; 
+    font-weight: bold;
+    z-index: 2; 
+}
+.facebook{
+  color: rgb(21, 0, 255);
+  text-decoration: none;
+  font-weight: 100;
+  font-size: 115%;
+}}
