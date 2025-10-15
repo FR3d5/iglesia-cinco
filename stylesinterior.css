@@ -143,17 +143,6 @@ canvas {
   stroke-dashoffset: 0;
   stroke: #f8b138;
 }
-.modal {
-  display: none; 
-  position: fixed; 
-  z-index: 1; 
-  left: 0;
-  top: 0;
-  width: 100%; 
-  height: 100%; 
-  overflow: auto; 
-  background-color: rgba(0,0,0,0.4);
-}
 
 .modal {
             display: none;
@@ -191,8 +180,8 @@ canvas {
             cursor: pointer;
         }
 
-        .modal-contenido img {
-            max-width: 100%;
+        .modal-sobre-mi img {
+            max-width: 10%;
             height: auto;
             margin-top: 15px;
             border-radius: 8px;
@@ -246,7 +235,6 @@ canvas {
 @media screen and (max-width: 768px) {
 html,
 body {
-  background-image: url(./public/img/technology.jpg);
   width: 100%;
   height: 100%;
 }

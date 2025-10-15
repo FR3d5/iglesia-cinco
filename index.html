@@ -92,7 +92,7 @@
       <svg height="40" width="150">
         <rect id="shape" height="40" width="150" />
         <div id="text">
-          <a href="interior.html"><span class="spot"></span>Interior</a>
+          <a href="interior.html"><span class="spot"></span>Modelo 3D</a>
         </div>
       </svg>
     </div>
@@ -104,7 +104,14 @@
             <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
         </svg>
     </button>
-  <script type="module" src="script.js"></script>
+  <div id="overlay">
+    <p>Haz clic girar,<br>Usa W, A, S, D para moverte</p>
+  </div>
+  <script src="https://aframe.io/releases/1.6.0/aframe.min.js"></script>
+  <a-scene embedded style="display:none;" vr-mode-ui="enabled: false" renderer="logarithmicDepthBuffer: true;">
+  <a-entity id="gyroCam" camera look-controls="touchEnabled: false; magicWindowTrackingEnabled: true;"></a-entity>
+</a-scene>
+  <script type="module" src="scriptinterior.js"></script>
 </body>
 
 </html>

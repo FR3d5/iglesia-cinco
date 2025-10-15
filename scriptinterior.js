@@ -8,11 +8,12 @@
         let moveBackward = false;
         let moveLeft = false;
         let moveRight = false;
-
+        let finalPosition = new THREE.Vector3();
+        let targetPosition = null;
         const overlay = document.getElementById('overlay');
         
         // Variable para almacenar la posición calculada que ambos modelos y la cámara usarán
-        const finalPosition = new THREE.Vector3(); 
+        const CAMERA_MODAL_VIEW_OFFSET = new THREE.Vector3(50, 0, 30);
         
         // Función para mostrar mensajes modales (reemplaza alert, que no funciona bien en iframes)
         function showModalMessage(message) {
@@ -223,10 +224,27 @@
             const delta = clock.getDelta();
             const speed = 15;
 
-            if (moveForward) controls.moveForward(speed * delta);
-            if (moveBackward) controls.moveForward(-speed * delta);
-            if (moveLeft) controls.moveRight(-speed * delta);
-            if (moveRight) controls.moveRight(speed * delta);
+            if (controls.isLocked) {
+                if (moveForward) controls.moveForward(speed * delta);
+                if (moveBackward) controls.moveForward(-speed * delta);
+                if (moveLeft) controls.moveRight(-speed * delta);
+                if (moveRight) controls.moveRight(speed * delta);
+            }
+            
+
+            // 2. LÓGICA DE MOVIMIENTO SUAVE AL ABRIR MODAL (LERP)
+            // 2. LÓGICA DE MOVIMIENTO SUAVE AL ABRIR MODAL (LERP)
+if (targetPosition) {
+    // Mueve la cámara gradualmente hacia la posición objetivo (factor 0.05 = suavidad)
+    controls.getObject().position.lerp(targetPosition, 0.05);
+
+    // Si la distancia es mínima, asumimos que hemos llegado al destino
+    if (controls.getObject().position.distanceTo(targetPosition) < 0.1) {
+        targetPosition = null; // Detiene la interpolación
+    }
+}
+
+            
             renderer.render(scene, camera);
         }
 
@@ -240,12 +258,14 @@
             const pad = document.createElement("div");
             pad.className = "controles-moviles";
             pad.innerHTML = `
+            <div class="botones">
                 <button id="btn-up">▲</button>
                 <div>
                     <button id="btn-left">◀</button>
                     <button id="btn-right">▶</button>
                 </div>
                 <button id="btn-down">▼</button>
+            </div>
             `;
             document.body.appendChild(pad);
 
@@ -258,3 +278,64 @@
             document.getElementById("btn-right").addEventListener("touchstart", () => moveRight = true);
             document.getElementById("btn-right").addEventListener("touchend", () => moveRight = false);
         }
+        
+var abrirBotones = document.querySelectorAll('a[id^="abrir-modal-"]');
+    var cerrarBotones = document.querySelectorAll('.cerrar-modal');
+    var modales = document.querySelectorAll('.modal');
+
+    function abrirModal(modalId) {
+        var modal = document.getElementById(modalId);
+            if (modal) {
+                // PASO 1: DESBLOQUEAR Y DETENER MOVIMIENTO
+                if (controls && controls.isLocked) {
+                    controls.unlock();
+                }
+                
+                // PASO 2: ESTABLECER LA POSICIÓN OBJETIVO (targetPosition)
+                // Usamos la posición inicial (finalPosition) como punto de referencia
+                if (finalPosition) {
+                    // Calculamos una posición cómoda para ver la escena mientras el modal está abierto
+                    targetPosition = finalPosition.clone().add(CAMERA_MODAL_VIEW_OFFSET); 
+                } else {
+                    // Fallback si el modelo no cargó, solo sube un poco la cámara actual
+                    targetPosition = controls.getObject().position.clone().add(new THREE.Vector3(0, 1, 0)); 
+                }
+                
+                // PASO 3: Mostrar el Modal
+                modal.style.display = 'block';
+            }
+    }
+
+    function cerrarModal(modalElement) {
+        modalElement.style.display = 'none';
+        targetPosition = finalPosition.clone();
+    }
+
+    abrirBotones.forEach(btn => {
+        btn.addEventListener('click', (event) => {
+            event.preventDefault();
+            const modalId = btn.id.replace('abrir-', '');
+            abrirModal(modalId);
+        });
+    });
+    cerrarBotones.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const modal = btn.closest('.modal');
+            if (modal) {
+                cerrarModal(modal);
+            }
+        });
+    });
+    window.addEventListener('click', (event) => {
+        modales.forEach(modal => {
+            if (event.target === modal) {
+                cerrarModal(modal);
+            }
+        });
+    });
+const menu = document.querySelector('#workarea');
+const toggle = document.querySelector('.menu-toggle');
+
+toggle.addEventListener('click', () => {
+  menu.classList.toggle('workarea-open');
+});
