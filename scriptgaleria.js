@@ -3,7 +3,8 @@ import { GLTFLoader } from 'https://esm.sh/three@0.161.0/examples/jsm/loaders/GL
 import { OrbitControls } from 'https://esm.sh/three@0.161.0/examples/jsm/controls/OrbitControls.js';
 
 let camera, scene, renderer, controls;
-let mixer;
+let mixer,model;
+let time = 0;
 const clock = new THREE.Clock();
 
 init();
@@ -42,7 +43,7 @@ function init() {
     // Cargar modelo GLB
     const loader = new GLTFLoader();
     loader.load('./public/modelos/padresito.glb', function (gltf) {
-        const model = gltf.scene;
+        model = gltf.scene;
         scene.add(model);
 
         if (gltf.animations && gltf.animations.length) {
@@ -81,8 +82,9 @@ function animate() {
     requestAnimationFrame(animate);
 
     const delta = clock.getDelta();
+    time+=delta;
     if (mixer) mixer.update(delta);
-
+    if(model){model.rotation.y += 0.005;}
     renderer.render(scene, camera);
 }
 

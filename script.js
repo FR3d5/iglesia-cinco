@@ -3,8 +3,9 @@ import { GLTFLoader } from 'https://esm.sh/three@0.161.0/examples/jsm/loaders/GL
 import { OrbitControls } from 'https://esm.sh/three@0.161.0/examples/jsm/controls/OrbitControls.js';
 
 let camera, scene, renderer, controls;
-let mixer;
+let mixer,model;
 const clock = new THREE.Clock();
+let time = 0;
 
 init();
 animate();
@@ -39,7 +40,7 @@ function init() {
     // Cargar modelo GLB
     const loader = new GLTFLoader();
     loader.load('./public/modelos/esena5.glb', function (gltf) {
-        const model = gltf.scene;
+        model = gltf.scene;
         scene.add(model);
 
         if (gltf.animations && gltf.animations.length) {
@@ -62,7 +63,7 @@ function init() {
         const box = new THREE.Box3().setFromObject(model);
         const center = new THREE.Vector3();
         box.getCenter(center);
-        camera.position.set(center.x+3, center.y + 5, center.z + 20);
+        camera.position.set(center.x+3, center.y, center.z + 20);
         if (window.innerWidth < 768) {
             camera.position.z = 35;
     }
@@ -75,10 +76,11 @@ function init() {
 
 function animate() {
     requestAnimationFrame(animate);
-
     const delta = clock.getDelta();
+     time += delta; 
+    //model.rotation.x=0.01;
     if (mixer) mixer.update(delta);
-
+    if(model){model.rotation.y = 4.5 + Math.sin(time * 0.5) * 0.2;}
     renderer.render(scene, camera);
 }
 
@@ -87,3 +89,9 @@ function onWindowResize() {
     camera.updateProjectionMatrix();
     renderer.setSize(window.innerWidth, window.innerHeight);
 }
+const menu = document.querySelector('#workarea');
+const toggle = document.querySelector('.menu-toggle');
+
+toggle.addEventListener('click', () => {
+menu.classList.toggle('workarea-open');
+});

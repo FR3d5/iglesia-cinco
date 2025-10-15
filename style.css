@@ -23,6 +23,7 @@ a{
   font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
   background-size: 200%;
   color: #fefefe;
+
 }
 .flex-container {
   display: flex;
@@ -30,7 +31,6 @@ a{
   width: 100%;
 }
 .flex-container > div {
-  color: white;
   margin: 5px;
   text-align: center;
   line-height: 75px;
@@ -70,7 +70,8 @@ h2{
   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
   background-size: 200%;
   color: white;
-  animation: text-animation 4s infinite;  
+  animation: text-animation 4s infinite;
+  text-shadow: #000 1px 1px 2px;
 }
 @keyframes text-animation{
   0%{
@@ -384,7 +385,7 @@ body {
   .menu-toggle {
                 display: flex;
                 position: fixed; /* Se mantiene visible al hacer scroll */
-                top: 125vw;
+                top: 65%;
                 left: 15px;
                 background: #ff9700;
                 padding: 10px;
@@ -432,18 +433,12 @@ body {
   h1, h2 {
     position: absolute; /* Se mueven con el flujo */
     left: 5%;
+    top: -5vw;
     width: 90%;
     text-align: left;
     font-size: 1.4rem; /* Reducimos el tamaño de la fuente */
     z-index: 1;
     text-shadow: #000 1px 1px 2px;
-  }
-  h3{
-    left: 5%;
-    width: 90%;
-    text-align: left;
-    font-size: 1.2rem; /* Reducimos el tamaño de la fuente */
-    z-index: 1;
   }
   /* 5. Ícono/Cruz: Reposicionarlo o simplificarlo */
   .cruz {
@@ -455,32 +450,52 @@ body {
   }
   /* 8. Estilos para el Modal (ajustamos el contenido para móvil) */
   .modal-contenido {
-    /* El display:none lo maneja el CSS base */
-    margin: 10% auto; /* Ajustamos el margen superior para móvil */
-    width: 95%; /* Ocupa más ancho en móvil */
-    max-width: 95%;
-    left: 0; /* Lo reseteamos para que quede centrado con margin: auto */
-    top: 0;
-    height: auto;
-  }
-  .modal-contenido img {
-    max-width: 100%;
-    float: none;
-    margin: 3px 0;
-    display: block;
-  }
-  .modal-contenido h3, .modal-contenido h5 {
-    text-align: left;
-  }
-  .texto-encima {
-    position: relative;
-    top: auto;
-    left: auto;
-    transform: none;
-    text-align: center;
-    margin: 10px 0;
-  }
+  background-color: #fefefe;
+  margin: 10% auto;
+  padding: 20px;
+  border-radius: 10px;
+  width: 90%;
+  max-width: 90%;
+  height: auto;
+  position: relative;
+  top: 10%;
+  left: 0;
+  z-index: 99;
+  overflow-y: auto; /* Permite scroll si el texto es largo */
+  word-wrap: break-word; /* Evita que palabras largas se salgan */
+}
+.modal-contenido h3 {
+  font-size: 1.2rem;
+  text-align: left;
+  line-height: 1.3;
+  word-wrap: break-word;
+}
+.modal-contenido h5 {
+  font-size: 1rem;
+  line-height: 1.2;
+  text-align: left;
+  word-wrap: break-word;
+}
 
+/* Ajustamos el texto general dentro del modal */
+.modal-contenido p,
+.modal-contenido label,
+.modal-contenido input,
+.modal-contenido textarea {
+  font-size: 0.9rem;
+  line-height: 1.3;
+  word-wrap: break-word;
+}
+
+/* Imagen más pequeña y centrada */
+.modal-contenido img {
+  max-width: 100%;
+  height: auto;
+  margin: 10px auto;
+  float: none;
+  display: block;
+  border-radius: 6px;
+}
   /* Formulario del Modal */
   form {
     grid-template-columns: 1fr; /* Una sola columna para los campos */
@@ -503,25 +518,7 @@ body {
   overflow: auto;
 }
 
-.modal-contenido {
-  background-color: #fefefe;
-  margin: 8% auto; /* Centrado en desktop */
-  padding: 20px;
-  border-radius: 10px;
-  width: 85%;
-  height: 45%;
-  max-width: 700px;
-  position: relative;
-  top: 15%;
-  left: 1%;
-  z-index: 99;
-}
-.modal-contenido h3{
-  font-size: 2rem;
-}
-.modal-contenido h5{
-  font-size: 1.5rem;
-}
+
 .cerrar-modal {
   color: #aaa;
   float: right;
@@ -553,7 +550,6 @@ body {
   top: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0,0,0,0.6);
 }
 .cerrar-modal {
   position: absolute;
@@ -636,8 +632,8 @@ form input[placeholder*="mensaje"] {
 .controles-moviles {
     position: fixed;
     bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
+    left: 40%;
+    transform: translateX(90%);
     display: flex;
     flex-direction: column;
     gap: 10px;

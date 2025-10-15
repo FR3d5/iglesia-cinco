@@ -88,7 +88,7 @@
 
         function loadMainScene() {
             const loader = new GLTFLoader();
-            loader.load("./public/modelos/scenesinflores.glb", function (gltf) {
+            loader.load("https://fr3d5.github.io/modelointerior/public/scenesinflores.glb", function (gltf) {
                 const model = gltf.scene;
                 scene.add(model);
                 
@@ -120,7 +120,7 @@
 
         function loadFlowers(position) {
             const loader2 = new GLTFLoader();
-            loader2.load("./public/modelos/flores.glb", function (gltf) {
+            loader2.load("https://fr3d5.github.io/flornormal/public/flores.glb", function (gltf) {
                 const model2 = gltf.scene;
                 model2.scale.set(11, 11, 11);
                 // Posicionamos el segundo modelo usando la posición calculada
@@ -134,7 +134,7 @@
         }
         function loadFlowers2(position) {
             const loader2 = new GLTFLoader();
-            loader2.load("./public/modelos/flores.glb", function (gltf) {
+            loader2.load("https://fr3d5.github.io/flornormal/public/flores.glb", function (gltf) {
                 const model2 = gltf.scene;
                 model2.scale.set(12, 12, 12);
                 // Posicionamos el segundo modelo usando la posición calculada
@@ -148,7 +148,7 @@
         }
         function loadFlowers3(position) {
             const loader2 = new GLTFLoader();
-            loader2.load("./public/modelos/floresrojo.glb", function (gltf) {
+            loader2.load("https://fr3d5.github.io/floresrojas/public/floresrojo.glb", function (gltf) {
                 const model2 = gltf.scene;
                 model2.scale.set(12, 12, 12);
                 // Posicionamos el segundo modelo usando la posición calculada
@@ -162,7 +162,7 @@
         }
         function loadFlowers4(position) {
             const loader2 = new GLTFLoader();
-            loader2.load("./public/modelos/floresrojo.glb", function (gltf) {
+            loader2.load("https://fr3d5.github.io/floresrojas/public/floresrojo.glb", function (gltf) {
                 const model2 = gltf.scene;
                 model2.scale.set(12, 12, 12);
                 // Posicionamos el segundo modelo usando la posición calculada
@@ -176,7 +176,7 @@
         }
         function loadFlowers5(position) {
             const loader2 = new GLTFLoader();
-            loader2.load("./public/modelos/floresrojo.glb", function (gltf) {
+            loader2.load("https://fr3d5.github.io/floresrojas/public/floresrojo.glb", function (gltf) {
                 const model2 = gltf.scene;
                 model2.scale.set(12, 12, 12);
                 // Posicionamos el segundo modelo usando la posición calculada
@@ -190,7 +190,7 @@
         }
         function loadFlowers6(position) {
             const loader2 = new GLTFLoader();
-            loader2.load("./public/modelos/floresrojo.glb", function (gltf) {
+            loader2.load("https://fr3d5.github.io/floresrojas/public/floresrojo.glb", function (gltf) {
                 const model2 = gltf.scene;
                 model2.scale.set(12, 12, 12);
                 // Posicionamos el segundo modelo usando la posición calculada

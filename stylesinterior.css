@@ -5,6 +5,7 @@
 }
 html,
 body {
+   background-image: url(./public/img/technology.jpg);
   width: 100%;
   height: 100%;
   overflow: hidden; 
@@ -51,6 +52,7 @@ h1{
   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
   background-size: 200%;
   color: white;
+  text-shadow: #000 1px 1px 2px;
 }
 h2{
   position: absolute;
@@ -86,22 +88,38 @@ canvas {
   height: 100vh;
   float: left;   
 }
+.menu-toggle {
+  display: none; /* Por defecto, oculto en escritorio */
+  position: fixed;
+  top: 2%;
+  left: 3%;
+  background: #ff9700;
+  padding: 10px;
+  border: none;
+  border-radius: 8px;
+  z-index: 9999;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+}
+
+/* Menú lateral cerrado (por defecto) */
 #workarea {
-  position: absolute;
-  background-color: aqua;
-  width: 15%; 
+  position: fixed;
+  top: 25%;
+  left: 0;
+  width: 60%;
+  max-width: 320px;
   height: 100%;
-  top: -7%;
-  left: 2.5%;
-  z-index: 10; 
-  background-color: transparent;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
   display: flex;
   flex-direction: column;
-  justify-content: center; 
-  align-items: flex-start;
-  padding-left: 2%; 
+  align-items: center;
+  padding-top: 60px;
+  transition: left 0.3s ease-in-out;
+  z-index: 9998;
 }
+
+/* Menú lateral abierto */
+
 .svg-wrapper {
   margin-top: 17px; 
   margin-bottom: 10px;
@@ -201,7 +219,7 @@ canvas {
             font-size: 2em;
             text-align: center;
             cursor: pointer;
-            z-index: 10;
+            z-index: 1;
             border-radius: 3rem;
         }
         .controles-moviles {
@@ -259,6 +277,8 @@ h1{
   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
   background-size: 200%;
   color: white;
+  font-size: 1.5rem;
+  text-shadow: #000 1px 1px 2px;
 }
 
 @keyframes text-animation{
@@ -284,33 +304,18 @@ canvas {
   float: left;   
 }
   .menu-toggle {
-                display: flex;
-                position: fixed;
-                top: 70%;
-                left: 15px;
-                background: #ff9700;
-                padding: 10px;
-                border-radius: 8px;
-                z-index: 11;
-                cursor: pointer;
-                box-shadow: 0 4px 8px rgba(0,0,0,0.5);
-            }
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+  }
+
   #workarea {
-                position: fixed !important; 
-                width: 40% !important; 
-                height: 100% !important;
-                top: 0 !important;
-                left: -100% !important;
-                z-index: 10;
-                flex-direction: column;
-                justify-content: flex-start;
-                padding-top: 60px; 
-                transition: left 0.1s ease-in-out; 
-                background-color: #000000b7;
-            }
-            #workarea.workarea-open {
-                left: 0 !important; 
-            }
+    left: -100% !important;
+  }
+  #workarea.workarea-open {
+    left: 0;
+  }
+
 .svg-wrapper {
   margin-top: 17px; 
   margin-bottom: 10px;

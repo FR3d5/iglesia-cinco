@@ -3,8 +3,12 @@ import { GLTFLoader } from 'https://esm.sh/three@0.161.0/examples/jsm/loaders/GL
 import { OrbitControls } from 'https://esm.sh/three@0.161.0/examples/jsm/controls/OrbitControls.js';
 
 let camera, scene, renderer, controls;
-let mixer;
+let mixer,model;
+var time=0;
+let pointLight;             // 💡 la luz
 const clock = new THREE.Clock();
+const mouse = new THREE.Vector2();
+const lightTarget = new THREE.Vector3(); 
 
 init();
 animate();
@@ -40,7 +44,7 @@ function init() {
     // Cargar modelo GLB
     const loader = new GLTFLoader();
     loader.load('./public/modelos/romano.glb', function (gltf) {
-        const model = gltf.scene;
+        model = gltf.scene;
         scene.add(model);
 
         if (gltf.animations && gltf.animations.length) {
@@ -67,16 +71,28 @@ function init() {
         controls.target.copy(center);
         controls.update();
     });
-
+    pointLight = new THREE.PointLight(0xffaa33, 3, 50);
+    scene.add(pointLight);
+    document.addEventListener('mousemove', onMouseMove);
     window.addEventListener('resize', onWindowResize);
+}
+function onMouseMove(event) {
+    // Normalizamos el movimiento del mouse (-1 a 1)
+    mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+    mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+
+    // Convertimos la posición a coordenadas 3D relativas a la cámara
+    lightTarget.set(mouse.x * 10, mouse.y * 5, 5);
 }
 
 function animate() {
     requestAnimationFrame(animate);
 
     const delta = clock.getDelta();
+    time+=delta;
     if (mixer) mixer.update(delta);
-
+    if(model){model.rotation.y+=0.005;}
+    pointLight.position.lerp(lightTarget, 100);
     renderer.render(scene, camera);
 }
 
