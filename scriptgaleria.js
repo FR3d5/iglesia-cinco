@@ -24,7 +24,7 @@ function init() {
 
     // Renderizador
     renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
-    renderer.setSize(window.innerWidth*0.2, window.innerHeight);
+    renderer.setSize(window.innerWidth*0.7, window.innerHeight);
     if(window.innerWidth < 676){
         renderer.setSize(window.innerWidth, window.innerHeight*0.6);
     }
@@ -70,7 +70,7 @@ function init() {
         const box = new THREE.Box3().setFromObject(model);
         const center = new THREE.Vector3();
         box.getCenter(center);
-        camera.position.set(center.x+3, center.y + 5, center.z + 20);
+        camera.position.set(center.x+3, center.y + 8, center.z + 20);
         controls.target.copy(center);
         controls.update();
     });
@@ -91,7 +91,7 @@ function animate() {
 function onWindowResize() {
     camera.aspect = window.innerWidth / window.innerHeight;
     camera.updateProjectionMatrix();
-    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setSize(window.innerWidth*0.7, window.innerHeight);
 }
 
 var abrirBotones = document.querySelectorAll('a[id^="abrir-modal-"]');

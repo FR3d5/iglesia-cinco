@@ -1,117 +1,119 @@
 <!doctype html>
-<html>
+<html lang="es">
 <head>
+  <meta charset="UTF-8">
   <title>PARROQUIA</title>
   <link rel="stylesheet" media="all" href="style.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
+
 <body>
 <header style="width: 100%;">
-    <div class="flex-container">
-      <div style="flex-grow: 8;"><img class="cruz" src="./public/img/logo.jpg"></div>
+  <div class="flex-container">
+    <div style="flex-grow: 8;"><img class="cruz" src="./public/img/logo.jpg"></div>
     <div style="flex-grow: 1;"><a href="#" id="abrir-modal-sobre-mi">SOBRE MÍ</a></div>
     <div style="flex-grow: 1;"><a href="#" id="abrir-modal-contacto">CONTACTO</a></div>
-    </div>
+  </div>
 </header>
 
-<!-- Modal para "SOBRE MÍ" -->
+<!-- Modal "SOBRE MÍ" -->
 <div id="modal-sobre-mi" class="modal">
-    <div class="modal-contenido">
-        <span class="cerrar-modal">&times;</span>
-        
-        <img src="./public/img/fotofreds.jpg" alt="Foto de contacto">
-        <h3>Freds Cazorla juyari</h3><br><br>
-        <h5><i class="fa-solid fa-phone"></i>  63467676</h5><br>
-        <h5><i class="fa-solid fa-envelope"></i>  fredsc.juyari@gmail.com</h5><br>
-        <h5><i class="fa-solid fa-location-dot"></i>  Enrrique Fernandez Nro. 38</h5><br>
-        soy estudiante de la carrera ingenieria informatica de cuarto año que esta aprendiendo a realizar 
-        paginas web con la incorporacion de modelos 3d
-    </div>
+  <div class="modal-contenido">
+    <span class="cerrar-modal">&times;</span>
+    <img src="./public/img/fotofreds.jpg" alt="Foto de contacto">
+    <h3>Freds Cazorla Juyari</h3><br><br>
+    <h5><i class="fa-solid fa-phone"></i> 63467676</h5><br>
+    <h5><i class="fa-solid fa-envelope"></i> fredsc.juyari@gmail.com</h5><br>
+    <h5><i class="fa-solid fa-location-dot"></i> Enrique Fernández Nro. 38</h5><br>
+    Soy estudiante de la carrera de Ingeniería Informática en cuarto año, aprendiendo a realizar 
+    páginas web con la incorporación de modelos 3D.
+  </div>
 </div>
 
-<!-- Modal para "CONTACTO" -->
+<!-- Modal "CONTACTO" -->
 <div id="modal-contacto" class="modal">
-    <div class="modal-contenido">
-        <span class="cerrar-modal">&times;</span>
-        <h2 style="top: -150%;">QUE PODEMOS HACER POR USTED?</h2>
-        <form action="">
-          <label>Nombre*</label>
-          <input class="input" type="text" placeholder="freds">
+  <div class="modal-contenido">
+    <span class="cerrar-modal">&times;</span>
+    <h2>¿Qué podemos hacer por usted?</h2>
+    <form>
+      <label>Nombre*</label>
+      <input class="input" type="text" placeholder="Fred">
 
-          <label>Apellido*</label>
-          <input class="input" type="text" placeholder="Cazorla juyari">
+      <label>Apellido*</label>
+      <input class="input" type="text" placeholder="Cazorla Juyari">
 
-          <label>Correo electrónico*</label>
-          <input class="input" type="email" placeholder="tu@email.com">
+      <label>Correo electrónico*</label>
+      <input class="input" type="email" placeholder="tu@email.com">
 
-          <label>Teléfono*</label>
-          <input class="input" type="text" placeholder="+459 73345667">
-          
-          <label>Tu mensaje*</label>
-          <textarea placeholder="Describe tu mensaje"></textarea>
-          o contactanos al siguiente numero* 73812554
-          <button>Enviar</button>
-        </form>
-
-    </div>
+      <label>Teléfono*</label>
+      <input class="input" type="text" placeholder="+591 73345667">
+      
+      <label>Tu mensaje*</label>
+      <textarea placeholder="Describe tu mensaje"></textarea>
+      <p>O contáctanos al número: <strong>73812554</strong></p>
+      <button>Enviar</button>
+    </form>
+  </div>
 </div>
-<h2>INICIO</h2>
-  <h1>PARROQUIA "NUESTRA SEÑORA DE LA ASUNCION"</h1>
+
+<!-- 🔹 MODAL GENERAL para cargar otras páginas -->
+<div id="modal-paginas" class="modal">
+  <div class="modal-contenido1">
+    <span class="cerrar-modal">&times;</span>
+    <iframe id="iframeVentana" src=""></iframe>
+  </div>
+</div>
+
+<!-- CONTENIDO PRINCIPAL -->
+<h2 class="posicion1">INICIO</h2>
+<h1>PARROQUIA "NUESTRA SEÑORA DE LA ASUNCIÓN"</h1>
+
 <div id="workarea">
   <div class="position">
-
     <div class="svg-wrapper">
       <svg height="40" width="150">
         <rect id="shape" height="40" width="150" />
-        <div id="text">
-          <a href="index.html"><span class="spot"></span>Inicio</a>
-        </div>
+        <div id="text"><a id="abrir-inicio"><span class="spot"></span>Inicio</a></div>
+      </svg>
+    </div>
+    <div class="svg-wrapper">
+      <svg height="40" width="150">
+        <rect id="shape" height="40" width="150" />
+        <div id="text"><a id="abrir-galeria"><span class="spot"></span>Galería</a></div>
       </svg>
     </div>
     
     <div class="svg-wrapper">
       <svg height="40" width="150">
         <rect id="shape" height="40" width="150" />
-        <div id="text">
-          <a href="galeria.html"><span class="spot"></span>Galeria</a>
-        </div>
-      </svg>
-    </div>
-    
-    <div class="svg-wrapper">
-      <svg height="40" width="150">
-        <rect id="shape" height="40" width="150" />
-        <div id="text">
-          <a href="informacion.html"><span class="spot"></span>Informacion</a>
-        </div>
+        <div id="text"><a id="abrir-informacion"><span class="spot"></span>Información</a></div>
       </svg>
     </div>
 
     <div class="svg-wrapper">
       <svg height="40" width="150">
         <rect id="shape" height="40" width="150" />
-        <div id="text">
-          <a href="interior.html"><span class="spot"></span>Modelo 3D</a>
-        </div>
+        <div id="text"><a id="abrir-modelo3d"><span class="spot"></span>Modelo 3D</a></div>
       </svg>
     </div>
-
   </div>
 </div>
-  <button class="menu-toggle" id="openMenuBtn">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="#000" class="w-6 h-6">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
-        </svg>
-    </button>
-  <div id="overlay">
-    <p>Haz clic girar,<br>Usa W, A, S, D para moverte</p>
-  </div>
-  <script src="https://aframe.io/releases/1.6.0/aframe.min.js"></script>
-  <a-scene embedded style="display:none;" vr-mode-ui="enabled: false" renderer="logarithmicDepthBuffer: true;">
+
+<button class="menu-toggle" id="openMenuBtn">
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="#000" class="w-6 h-6">
+    <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+  </svg>
+</button>
+
+<div id="overlay">
+  <p>Haz clic para girar,<br>Usa W, A, S, D para moverte</p>
+</div>
+<script src="https://aframe.io/releases/1.6.0/aframe.min.js"></script>
+<a-scene embedded style="display:none;" vr-mode-ui="enabled: false" renderer="logarithmicDepthBuffer: true;">
   <a-entity id="gyroCam" camera look-controls="touchEnabled: false; magicWindowTrackingEnabled: true;"></a-entity>
 </a-scene>
-  <script type="module" src="scriptinterior.js"></script>
-</body>
 
+<script type="module" src="scriptinterior.js"></script>
+</body>
 </html>

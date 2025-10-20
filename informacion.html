@@ -7,37 +7,6 @@
 </head>
 <body>
   <h1>INFORMACION</h1>
-<div id="workarea">
-  <div class="position">
-    <!--start button, nothing above this is necessary -->
-    <div class="svg-wrapper">
-      <svg height="40" width="150">
-        <rect id="shape" height="40" width="150" />
-        <div id="text">
-          <a href="index.html"><span class="spot"></span>Inicio</a>
-        </div>
-      </svg>
-    </div>
-    
-    <div class="svg-wrapper">
-      <svg height="40" width="150">
-        <rect id="shape" height="40" width="150" />
-        <div id="text">
-          <a href="galeria.html"><span class="spot"></span>Galeria</a>
-        </div>
-      </svg>
-    </div>
-
-    <div class="svg-wrapper">
-      <svg height="40" width="150">
-        <rect id="shape" height="40" width="150" />
-        <div id="text">
-          <a href="interior.html"><span class="spot"></span>Modelo 3D</a>
-        </div>
-      </svg>
-    </div>
-  </div>
-</div>
   <section class="mapa" id="ubicacion">
   <h2>Nuestra Ubicación</h2>
   <p>Encuéntranos en el mapa:</p><br>
@@ -84,6 +53,15 @@ CONTACTO:  73812554
         </svg>
     </button>
   <script type="module" src="scriptinformacio.js"></script>
-  <footer>freds</footer>
+  <script>
+    // Enviar eventos de scroll al padre (index.html)
+    window.addEventListener('wheel', function(event) {
+        // Enviar información del scroll al documento padre
+        window.parent.postMessage({
+            type: 'iframe-scroll',
+            deltaY: event.deltaY
+        }, '*');
+    });
+</script>
 </body>
 </html>

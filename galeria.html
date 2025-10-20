@@ -8,36 +8,6 @@
 </head>
 <body>
   <h1>Galeria</h1>
-<div id="workarea">
-  <div class="position">
-    <div class="svg-wrapper">
-      <svg height="40" width="150">
-        <rect id="shape" height="40" width="150" />
-        <div id="text">
-          <a href="index.html"><span class="spot"></span>Inicio</a>
-        </div>
-      </svg>
-    </div>
-    
-    <div class="svg-wrapper">
-      <svg height="40" width="150">
-        <rect id="shape" height="40" width="150" />
-        <div id="text">
-          <a href="informacion.html"><span class="spot"></span>Informacion</a>
-        </div>
-      </svg>
-    </div>
-
-    <div class="svg-wrapper">
-      <svg height="40" width="150">
-        <rect id="shape" height="40" width="150" />
-        <div id="text">
-          <a href="interior.html"><span class="spot"></span>Modelo 3D</a>
-        </div>
-      </svg>
-    </div>
-  </div>
-</div>
 <div class="row">
       <div class="column">
       <img src="./public/img/foto.png" style="width: 100%; ">
@@ -59,5 +29,15 @@
         </svg>
     </button>
   <script type="module" src="scriptgaleria.js"></script>
+    <script>
+    // Enviar eventos de scroll al padre (index.html)
+    window.addEventListener('wheel', function(event) {
+        // Enviar información del scroll al documento padre
+        window.parent.postMessage({
+            type: 'iframe-scroll',
+            deltaY: event.deltaY
+        }, '*');
+    });
+</script>
 </body>
 </html>
