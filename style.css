@@ -426,7 +426,7 @@ body {
   .menu-toggle {
                 display: flex;
                 position: fixed; /* Se mantiene visible al hacer scroll */
-                top: 65%;
+                top: 70%;
                 left: 15px;
                 background: #ff9700;
                 padding: 10px;
@@ -473,7 +473,7 @@ body {
   /* 3. Títulos: Ponerlos en posición normal y visibles */
   h1, h2 {
     position: absolute; /* Se mueven con el flujo */
-    left: 5%;
+    left: 1%;
     top: -5vw;
     width: 90%;
     text-align: left;
@@ -486,7 +486,7 @@ body {
     position: relative;
     left: -35%;
     top: 15%;
-    width: 6vh;
+    width: 7vw;
     z-index: 12;
   }
   /* 8. Estilos para el Modal (ajustamos el contenido para móvil) */

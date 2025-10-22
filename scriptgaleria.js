@@ -11,10 +11,8 @@ init();
 animate();
 
 function init() {
-    // Escena
     scene = new THREE.Scene();
 
-    // Luces
     const dirLight = new THREE.DirectionalLight(0xffffff, 3);
     dirLight.position.set(0, 20, 10);
     scene.add(dirLight);
@@ -22,7 +20,6 @@ function init() {
     const ambientLight = new THREE.AmbientLight(0xffffff, 1.4);
     scene.add(ambientLight);
 
-    // Renderizador
     renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
     renderer.setSize(window.innerWidth*0.7, window.innerHeight);
     if(window.innerWidth < 676){
@@ -30,17 +27,14 @@ function init() {
     }
     document.body.appendChild(renderer.domElement);
 
-    // Cámara
     camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight,0.1,2000);
 
-    // Controles
     controls = new OrbitControls(camera, renderer.domElement);
     controls.enableDamping = true;
     controls.dampingFactor = 0.05;
     controls.enableZoom = true;
     controls.enablePan = true;
 
-    // Cargar modelo GLB
     const loader = new GLTFLoader();
     loader.load('./public/modelos/padresito.glb', function (gltf) {
         model = gltf.scene;
@@ -66,7 +60,6 @@ function init() {
             model.position.set(0,-5,0);
         }
 
-        // Ajustar cámara y controles al centro del modelo
         const box = new THREE.Box3().setFromObject(model);
         const center = new THREE.Vector3();
         box.getCenter(center);

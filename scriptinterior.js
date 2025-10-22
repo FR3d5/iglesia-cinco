@@ -13,7 +13,6 @@ let targetPosition = null;
 let targetRotation = null;
 const overlay = document.getElementById('overlay');
 
-// Variable para almacenar la posición calculada que ambos modelos y la cámara usarán
 const CAMERA_MODAL_VIEW_OFFSET = new THREE.Vector3(50, 0, 30);
 const CAMERA_SPEED = 0.08; 
 const CAMERA_VIEWS = {
@@ -24,7 +23,6 @@ const CAMERA_VIEWS = {
   'modal-modelo3d': new THREE.Vector3(-50, 30, 0),
 };
 
-// Rotaciones específicas para cada modal (en radianes)
 const CAMERA_ROTATIONS = {
   'modal-galeria': { y: -Math.PI },     
   'modal-informacion': { y: -Math.PI*2},
@@ -33,7 +31,6 @@ const CAMERA_ROTATIONS = {
   'modal-contacto': { y: Math.PI*1.2 }
 };
 
-// Función para mostrar mensajes modales (reemplaza alert, que no funciona bien en iframes)
 function showModalMessage(message) {
     const modal = document.createElement('div');
     modal.className = 'fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white p-6 rounded-xl shadow-2xl z-50 max-w-sm text-center border-4 border-blue-500';
@@ -92,7 +89,6 @@ function init() {
     dirLight.position.set(10, 10, 5);
     scene.add(dirLight);
 
-    // Iniciar la cadena de carga
     loadMainScene();
 
     if (!isMobile) {
@@ -228,10 +224,8 @@ function onKeyUp(event) {
     }
 }
 
-// Función para interpolar ángulos correctamente (evita giros largos)
 function lerpAngle(start, end, t) {
     let diff = end - start;
-    // Normalizar la diferencia para tomar el camino más corto
     while (diff > Math.PI) diff -= 2 * Math.PI;
     while (diff < -Math.PI) diff += 2 * Math.PI;
     return start + diff * t;
@@ -249,7 +243,6 @@ function animate() {
         if (moveRight) controls.moveRight(speed * delta);
     }
 
-    // Interpolar posición
     if (targetPosition) {
         controls.getObject().position.lerp(targetPosition, CAMERA_SPEED);
         if (controls.getObject().position.distanceTo(targetPosition) < 0.1) {
@@ -257,11 +250,9 @@ function animate() {
         }
     }
     
-    // 🔸 Interpolar rotación
     if (targetRotation && camera) {
         camera.rotation.y = lerpAngle(camera.rotation.y, targetRotation.y, CAMERA_SPEED);
         
-        // Detener interpolación cuando esté muy cerca
         if (Math.abs(camera.rotation.y - targetRotation.y) < 0.01) {
             camera.rotation.y = targetRotation.y;
             targetRotation = null;
@@ -301,11 +292,6 @@ function crearControlesMoviles() {
     document.getElementById("btn-right").addEventListener("touchstart", () => moveRight = true);
     document.getElementById("btn-right").addEventListener("touchend", () => moveRight = false);
 }
-
-// =======================
-// 🔹 MANEJO DE MODALES
-// =======================
-
 var abrirBotones = document.querySelectorAll('a[id^="abrir-modal-"]');
 var cerrarBotones = document.querySelectorAll('.cerrar-modal');
 var modales = document.querySelectorAll('.modal');
@@ -323,7 +309,6 @@ function abrirModal(modalId) {
         targetPosition = controls.getObject().position.clone().add(new THREE.Vector3(0, 1, 0));
     }
 
-    // 🔸 Define la rotación de destino
     targetRotation = CAMERA_ROTATIONS[modalId] || { y: camera.rotation.y };
 
     modal.style.display = 'block';
@@ -334,11 +319,10 @@ function cerrarModal(modalElement) {
     
     if (finalPosition) {
         targetPosition = finalPosition.clone();
-        targetRotation = { y: -1.6 }; // Rotación inicial
+        targetRotation = { y: -1.6 };
     }
 }
 
-// Escucha los clics en los botones que abren modales
 abrirBotones.forEach(btn => {
     btn.addEventListener('click', (event) => {
         event.preventDefault();
@@ -347,7 +331,6 @@ abrirBotones.forEach(btn => {
     });
 });
 
-// Escucha los clics en los botones de cierre
 cerrarBotones.forEach(btn => {
     btn.addEventListener('click', () => {
         const modal = btn.closest('.modal');
@@ -355,16 +338,11 @@ cerrarBotones.forEach(btn => {
     });
 });
 
-// Cierra el modal si se hace clic fuera del contenido
 window.addEventListener('click', (event) => {
     modales.forEach(modal => {
         if (event.target === modal) cerrarModal(modal);
     });
 });
-
-// =======================
-// 🔹 MODALES CON IFRAME
-// =======================
 
 const iframeModal = document.getElementById('modal-paginas');
 const iframeVentana = document.getElementById('iframeVentana');
@@ -384,13 +362,11 @@ function abrirIframe(url, modalId) {
         targetPosition = controls.getObject().position.clone().add(new THREE.Vector3(0, 1, 0));
     }
 
-    // 🔸 Define la rotación de destino
     targetRotation = CAMERA_ROTATIONS[modalId] || { y: camera.rotation.y };
 
     iframeVentana.src = url;
     iframeModal.style.display = 'flex';
     if (overlay) overlay.style.display = 'none';
-    // 🔸 Mover h1 y h2 a sus posiciones finales con un pequeño delay
     setTimeout(() => {
         const h1 = document.querySelector('h1');
         const h2 = document.querySelector('.posicion1');
@@ -398,11 +374,9 @@ function abrirIframe(url, modalId) {
         if (h2) h2.classList.add('posicion-final-h2');
     }, 100);
     
-    // 🔸 Escuchar eventos de scroll desde el iframe
     configurarScrollIframe();
 }
 
-// 🔸 Función para restaurar h1 y h2 a su posición original
 function restaurarTitulos() {
     const h1 = document.querySelector('h1');
     const h2 = document.querySelector('.posicion1');
@@ -411,18 +385,16 @@ function restaurarTitulos() {
     if (overlay) overlay.style.display = 'flex';
 }
 
-// Eventos para cada botón
 if (btnInicio) {
     btnInicio.addEventListener('click', (e) => {
         e.preventDefault();
         if (controls && controls.isLocked) controls.unlock();
         
-        // 🔸 Restaurar h1 y h2 a posición original
         restaurarTitulos();
         
         if (finalPosition) {
             targetPosition = finalPosition.clone();
-            targetRotation = { y: -1.6 }; // Rotación inicial
+            targetRotation = { y: -1.6 };
         }
     });
 }
@@ -448,21 +420,15 @@ if (btnModelo3D) {
     });
 }
 
-// 🔸 Función para configurar comunicación con el iframe
 function configurarScrollIframe() {
-    // Escuchar mensajes del iframe sobre scroll
     window.addEventListener('message', function(event) {
-        // Verificar que el mensaje viene del iframe
         if (event.data && event.data.type === 'iframe-scroll') {
             const scrollDelta = event.data.deltaY;
             const moveSpeed = 0.5;
             
-            // Mover la cámara en el eje X según el scroll del iframe
             if (scrollDelta < 0) {
-                // Scroll hacia arriba = mover a la derecha
                 controls.getObject().position.x += moveSpeed;
             } else {
-                // Scroll hacia abajo = mover a la izquierda
                 controls.getObject().position.x -= moveSpeed;
             }
         }
