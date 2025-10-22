@@ -4,7 +4,6 @@
   box-sizing: border-box; 
 }
 
-/* Estilos Base para todas las pantallas */
 html,
 body {
   width: 100%;
@@ -38,7 +37,6 @@ a{
   z-index: 2;
 }
 
-/* Elemento fijo/ícono. Mantenemos posición absoluta en desktop */
 .cruz{
   position: absolute;
   border-radius: 3rem;
@@ -47,7 +45,6 @@ a{
   padding: 10px;
 }
 
-/* Títulos: Posición absoluta en desktop */
 h1{
   position: absolute;
   left: 3%;
@@ -88,12 +85,12 @@ h2{
   font-size: 2rem;
 }
 .posicion-final-h1 {
-            transform: translate(-500%, 0); /* Centrado con transform */
+            transform: translate(-500%, 0); 
         }
 
 .posicion-final-h2 {
 
-            transform: translate(-500%, 0); /* Centrado con transform */
+            transform: translate(-500%, 0); 
         }
 @keyframes text-animation{
   0%{
@@ -104,7 +101,6 @@ h2{
   }
 }
 
-/* Canvas/Visualizador 3D: Se ajustará automáticamente en mobile */
 canvas {
   width: 80%;
   height: 80%;
@@ -115,12 +111,11 @@ canvas {
   z-index: 0; 
 }
 #viewer {
-  width: 50vw;   /* 50% del ancho de la ventana */
-  height: 100vh; /* alto completo */
-  float: left;   /* para que se acomode al lado */
+  width: 50vw;  
+  height: 100vh; 
+  float: left;  
 }
 
-/* Área de trabajo/Menú lateral (en escritorio) */
 #workarea {
   position: absolute;
   width: 15%; 
@@ -231,17 +226,16 @@ canvas {
   font-weight: bold;
   box-shadow: 0 4px 8px rgba(0,0,0,0.5);
 }
-  /* 8. Estilos para el Modal (ajustamos el contenido para móvil) */
   .modal-contenido {
     margin: 3% auto;
     width: 90%;
     max-width: 90%;
-    left: -10%; /* Centramos quitando el left fijo */
+    left: -10%; 
     height: auto;
   }
   .modal-contenido img {
     float: left;
-    max-width: 100%; /* Imagen a ancho completo */
+    max-width: 100%; 
     float: none;
     margin: 3px 0;
     display: block;
@@ -258,32 +252,29 @@ canvas {
     margin: 10px 0;
   }
 
-  /* Formulario del Modal */
   form {
-    grid-template-columns: 1fr; /* Una sola columna para los campos */
+    grid-template-columns: 1fr;
     gap: 9px;
   }
   form textarea,
   form input[placeholder*="mensaje"] {
-      grid-column: span 1; /* El mensaje ahora ocupa solo una columna */
+      grid-column: span 1; 
   }
 
-/* Fin de los estilos del modal */
 .modal {
-  display: none; /* ESTE ES EL QUE DEBE SER CONTROLADO POR JAVASCRIPT */
+  display: none; 
   position: fixed;
-  z-index: 15; /* Aseguramos que esté encima de todo */
+  z-index: 15; 
   left: 0;
   top: 0;
   width: 100vw;
   height: 100vw;
- /* Fondo semi-transparente */
   overflow: auto;
 }
 
 .modal-contenido {
   background-color: #fefefe;
-  margin: 8% auto; /* Centrado en desktop */
+  margin: 8% auto; 
   padding: 20px;
   border-radius: 10px 10px 10px 10px;
   width: 100vw;
@@ -295,7 +286,7 @@ canvas {
   z-index: 99;
 }
 .modal-contenido1{
-  margin: 8% auto; /* Centrado en desktop */
+  margin: 8% auto; 
   padding: 20px;
   border-radius: 10px 10px 10px 10px;
   width: 400%;
@@ -333,7 +324,6 @@ canvas {
   border-radius: 8px;
   float: left;
 }
-/* ===== Estilos del modal ===== */
 #modal-contacto {
   display: none; 
   position: fixed;
@@ -351,13 +341,11 @@ canvas {
   cursor: pointer;
 }
 
-/* ===== Estilos generales del formulario (Desktop) ===== */
 form {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 20px;
 }
-/* Cada campo en columna */
 form label {
   display: block;
   font-size: 14px;
@@ -403,7 +391,6 @@ form textarea::placeholder {
   font-size: 14px;
 }
 
-/* Mensaje ocupa todo el ancho */
 form textarea,
 form input[placeholder*="mensaje"] {
   grid-column: span 2;
@@ -415,48 +402,42 @@ iframe {
       border: none;
     }
 @media screen and (max-width: 768px) {
-  /* 1. Resetear el cuerpo para permitir el scroll vertical */
 html,
 body {
   width: 100%;
   height: 100%;
 }
   
-  /* 2. El área de trabajo (menú) debe ser la primera y ocupar todo el ancho */
   .menu-toggle {
                 display: flex;
-                position: fixed; /* Se mantiene visible al hacer scroll */
+                position: fixed; 
                 top: 70%;
                 left: 15px;
                 background: #ff9700;
                 padding: 10px;
                 border-radius: 8px;
-                z-index: 11; /* Siempre encima */
+                z-index: 11;
                 cursor: pointer;
                 box-shadow: 0 4px 8px rgba(0,0,0,0.5);
             }
   #workarea {
-                /* Anulamos la posición de escritorio */
                 position: fixed !important; 
-                width: 40% !important; /* Ocupa la mayor parte de la pantalla */
+                width: 40% !important; 
                 height: 100% !important;
                 top: 0vw !important;
-                left: -100% !important; /* OCULTAR FUERA DE PANTALLA */
+                left: -100% !important;
                 z-index: 10;
-                /* El padding y flex-direction se mantienen para una lista vertical */
                 flex-direction: column;
                 justify-content: flex-start;
-                padding-top: 1px; /* Espacio para el botón de cierre */
-                transition: left 0.1s ease-in-out; /* Transición suave */
+                padding-top: 1px; 
+                transition: left 0.1s ease-in-out; 
                 background-color: #000000b7;
             }
             
-            /* 3b. Clase para mostrar la Pestaña */
             #workarea.workarea-open {
-                left: 0 !important; /* MOSTRAR */
+                left: 0 !important; 
             }
 
-  /* Ajustamos los wrappers SVG para que no usen unidades vw */
   .svg-wrapper {
       width: 100px;
       height: 35px;
@@ -470,18 +451,16 @@ body {
       margin-right: 0;
   }
   
-  /* 3. Títulos: Ponerlos en posición normal y visibles */
   h1, h2 {
-    position: absolute; /* Se mueven con el flujo */
+    position: absolute;
     left: 1%;
     top: -5vw;
     width: 90%;
     text-align: left;
-    font-size: 1.4rem; /* Reducimos el tamaño de la fuente */
+    font-size: 1.4rem; 
     z-index: 1;
     text-shadow: #000 1px 1px 2px;
   }
-  /* 5. Ícono/Cruz: Reposicionarlo o simplificarlo */
   .cruz {
     position: relative;
     left: -35%;
@@ -489,7 +468,6 @@ body {
     width: 7vw;
     z-index: 12;
   }
-  /* 8. Estilos para el Modal (ajustamos el contenido para móvil) */
   .modal-contenido {
   background-color: #fefefe;
   margin: 10% auto;
@@ -502,8 +480,8 @@ body {
   top: 10%;
   left: 0;
   z-index: 99;
-  overflow-y: auto; /* Permite scroll si el texto es largo */
-  word-wrap: break-word; /* Evita que palabras largas se salgan */
+  overflow-y: auto; 
+  word-wrap: break-word; 
 }
 .modal-contenido h3 {
   font-size: 1.2rem;
@@ -518,7 +496,6 @@ body {
   word-wrap: break-word;
 }
 
-/* Ajustamos el texto general dentro del modal */
 .modal-contenido p,
 .modal-contenido label,
 .modal-contenido input,
@@ -528,7 +505,6 @@ body {
   word-wrap: break-word;
 }
 
-/* Imagen más pequeña y centrada */
 .modal-contenido img {
   max-width: 100%;
   height: auto;
@@ -537,17 +513,15 @@ body {
   display: block;
   border-radius: 6px;
 }
-  /* Formulario del Modal */
   form {
-    grid-template-columns: 1fr; /* Una sola columna para los campos */
+    grid-template-columns: 1fr; 
     gap: 9px;
   }
   form textarea,
   form input[placeholder*="mensaje"] {
-      grid-column: span 1; /* El mensaje ahora ocupa solo una columna */
+      grid-column: span 1; 
   }
 
-/* Fin de los estilos del modal */
 .modal {
   display: none; 
   position: fixed; 
@@ -582,7 +556,6 @@ body {
   border-radius: 8px;
   float: left;
 }
-/* ===== Estilos del modal ===== */
 #modal-contacto {
   display: none; 
   position: fixed;
@@ -600,13 +573,11 @@ body {
   cursor: pointer;
 }
 
-/* ===== Estilos generales del formulario (Desktop) ===== */
 form {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 20px;
 }
-/* Cada campo en columna */
 form label {
   display: block;
   font-size: 14px;
@@ -652,7 +623,6 @@ form textarea::placeholder {
   font-size: 14px;
 }
 
-/* Mensaje ocupa todo el ancho */
 form textarea,
 form input[placeholder*="mensaje"] {
   grid-column: span 2;
@@ -678,7 +648,7 @@ form input[placeholder*="mensaje"] {
     display: flex;
     flex-direction: column;
     gap: 10px;
-    z-index: 9999; /* por encima del modal */
+    z-index: 9999;
 }
 
 .controles-moviles button {
@@ -688,7 +658,7 @@ form input[placeholder*="mensaje"] {
     background-color: rgba(244, 164, 60, 0.8);
     color: white;
     border: none;
-    touch-action: none; /* evita gestos del navegador */
+    touch-action: none;
 }
 
 }
