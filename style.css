@@ -25,6 +25,7 @@ a{
 
 }
 .flex-container {
+  position: absolute;
   display: flex;
   align-items: stretch;
   width: 100%;
@@ -69,6 +70,20 @@ h2{
   color: white;
   animation: text-animation 4s infinite;
   text-shadow: #000 1px 1px 2px;
+}
+.boton-luz {
+  position: absolute;
+  top: 15%;
+  right: 3%;
+  z-index: 10;
+  padding: 10px 20px;
+  font-size: 1rem;
+  background-color: rgba(179, 178, 178, 0.238);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
 }
 .posicion1{
   position: absolute;

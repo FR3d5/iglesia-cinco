@@ -11,6 +11,9 @@ let moveRight = false;
 let finalPosition = new THREE.Vector3();
 let targetPosition = null;
 let targetRotation = null;
+let ambientLight;
+let spotLight;
+let pointLight;
 const overlay = document.getElementById('overlay');
 
 const CAMERA_MODAL_VIEW_OFFSET = new THREE.Vector3(50, 0, 30);
@@ -83,10 +86,10 @@ function init() {
         overlay.style.display = "flex";
     });
 
-    const ambientLight = new THREE.AmbientLight(0xffffff, 2);
+    ambientLight = new THREE.AmbientLight(0xffffff, 2);
     scene.add(ambientLight);
-    const dirLight = new THREE.DirectionalLight(0xffffff, 2);
-    dirLight.position.set(10, 10, 5);
+    const dirLight = new THREE.DirectionalLight(0xffffff, 1);
+    dirLight.position.set(-20, 50, 10);
     scene.add(dirLight);
 
     loadMainScene();
@@ -98,12 +101,86 @@ function init() {
 
     clock = new THREE.Clock();
     window.addEventListener("resize", onWindowResize, false);
-}
+    // 💡 Luz puntual (PointLight)
+    luz(24,112,-26);
+    luz(-5,112,-26);
+    luz(-34,112,-26);
+    luz(-65,112,-26);
+    luz(-94,112,-26);
 
+    luz(33,13,47);
+    luz(10,13,47);
+    luz(-13,13,47);
+    luz(-35,13,47);
+    luz(-57,13,47);
+    luz(-79,13,47);
+    luz(-101,13,47);
+    
+    luz(33,13,-97);
+    luz(10,13,-97);
+    luz(-13,13,-97);
+    luz(-35,13,-97);
+    luz(-57,13,-97);
+    luz(-79,13,-97);
+    luz(-101,13,-97);
+
+    luz2(-25,110,-25);
+    luz2(25,110,-25);
+    luz2(-5,112,-26);
+    luz2(-34,112,-26);
+    luz2(-65,112,-26);
+    luz2(-94,112,-26);
+    // Añadir un ayudante para visualizar la luz puntual
+
+    renderer.shadowMap.enabled = true;
+renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+}
+function luz(x,y,z){
+    pointLight = new THREE.PointLight(0xffffff, 100, 150);
+    pointLight.position.set(x,y,z);
+    scene.add(pointLight);
+}
+function luz2(x,y,z){
+spotLight = new THREE.SpotLight(0xffffff, 400);
+spotLight.position.set(x,y,z);
+
+spotLight.castShadow = true;
+// Aumentar resolución del mapa de sombras (más detalle)
+spotLight.shadow.mapSize.width = 2048;
+spotLight.shadow.mapSize.height = 2048;
+// Ajustar la cámara de sombra
+spotLight.shadow.camera.near = 10;
+spotLight.shadow.camera.far = 300;
+spotLight.shadow.focus = 1; // mejora precisión de enfoque
+// Reducir el "acné" o parches
+spotLight.shadow.bias = -0.001;
+// Opcional: sombras más suaves
+renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+
+
+spotLight.angle = Math.PI / 12;
+spotLight.penumbra = 0.2;
+spotLight.decay = 1;
+spotLight.distance = 150;
+spotLight.castShadow = true;
+
+// Configurar destino (hacia dónde apunta)
+const targetObject = new THREE.Object3D();
+targetObject.position.set(x,y-100,z); // centro de la escena
+scene.add(targetObject);
+spotLight.target = targetObject;        // genera sombras
+    scene.add(spotLight);
+}
 function loadMainScene() {
     const loader = new GLTFLoader();
     loader.load("https://fr3d5.github.io/modelointerior/public/scenesinflores.glb", function (gltf) {
         const model = gltf.scene;
+        model.traverse((child) => {
+    if (child.isMesh) {
+      child.castShadow = true;    // proyecta sombra
+      child.receiveShadow = true; // recibe sombra
+    }
+  });
         scene.add(model);
         
         const box = new THREE.Box3().setFromObject(model);
@@ -479,3 +556,23 @@ const toggle = document.querySelector('.menu-toggle');
 toggle.addEventListener('click', () => {
     menu.classList.toggle('workarea-open');
 });
+let modoLuz = 0;
+    const botonLuz = document.querySelector('.boton-luz');
+
+    if (botonLuz) {
+        botonLuz.addEventListener('click', () => {
+            modoLuz = (modoLuz + 1) % 2; // Cicla entre 0, 1, 2
+
+            switch (modoLuz) {
+                case 0:
+                    ambientLight.intensity = 0.2;
+                    showModalMessage('🌙 Modo oscuro activado');
+                    break;
+                case 1:
+                    ambientLight.intensity = 2;
+                    showModalMessage('💡 Modo normal activado');
+                    break;
+                
+            }
+        });
+    }
