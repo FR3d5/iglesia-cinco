@@ -1,8 +1,17 @@
+/* ============================================
+   RESET GLOBAL - Elimina márgenes y padding por defecto
+   ============================================ */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box; 
 }
+
+/* ============================================
+   HTML Y BODY - Contenedor principal de la página
+   Posiciona: Toda la página con altura completa
+   Organiza: Sin scroll, fondo cubriendo toda la pantalla
+   ============================================ */
 html,
 body {
   width: 100%;
@@ -13,19 +22,31 @@ body {
   background-repeat: no-repeat;
   background-size: cover; 
 }
-a{
-   text-decoration: none;
-   text-align: center;
+
+/* ============================================
+   ENLACES (a) - Links del menú de navegación
+   Posiciona: Centrados en su contenedor
+   Organiza: Tipografía responsive con tamaño fluido
+   ============================================ */
+a {
+  text-decoration: none;
+  text-align: center;
   font-size: clamp(1rem, 3vw, 1.5rem);
   top: 2%;
   font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
   background-size: 200%;
   color: #fefefe;
 }
+
+/* ============================================
+   FLEX-CONTAINER - Contenedor flexible genérico
+   Organiza: Elementos estirados horizontalmente
+   ============================================ */
 .flex-container {
   display: flex;
   align-items: stretch;
 }
+
 .flex-container > div {
   color: white;
   margin: 5px;
@@ -34,14 +55,26 @@ a{
   font-size: 30px;
   z-index: 2;
 }
-.cruz{
+
+/* ============================================
+   CRUZ - Logo de la iglesia (imagen)
+   Posiciona: Esquina superior izquierda
+   Organiza: Tamaño fijo con bordes redondeados
+   ============================================ */
+.cruz {
   position: absolute;
   border-radius: 3rem;
   left: 25px;
   width: 15vh;
-  padding: 10px 10px 10px 10px;
+  padding: 10px;
 }
-h1{
+
+/* ============================================
+   H1 - Título principal de la página
+   Posiciona: Parte inferior izquierda
+   Organiza: Texto con sombra para legibilidad
+   ============================================ */
+h1 {
   position: absolute;
   left: 3%;
   transform: translateY(85vh);
@@ -53,7 +86,13 @@ h1{
   color: white;
   text-shadow: #000 1px 1px 2px;
 }
-h2{
+
+/* ============================================
+   H2 - Subtítulo con animación de gradiente
+   Posiciona: Debajo del H1 en la parte inferior izquierda
+   Organiza: Texto animado con movimiento de fondo
+   ============================================ */
+h2 {
   position: absolute;
   left: 3%;
   transform: translateY(75vh);
@@ -65,14 +104,24 @@ h2{
   color: white;
   animation: text-animation 4s infinite;  
 }
-@keyframes text-animation{
-  0%{
+
+/* ============================================
+   ANIMACIÓN DE TEXTO - Gradiente animado
+   ============================================ */
+@keyframes text-animation {
+  0% {
     background-position: 0%;
   }
-  100%{
+  100% {
     background-position: 200%;
   }
 }
+
+/* ============================================
+   CANVAS - Lienzo Three.js para escena 3D interior
+   Posiciona: Cubre toda la pantalla como fondo
+   Organiza: Detrás de todos los elementos UI
+   ============================================ */
 canvas {
   width: 80%;
   height: 80%;
@@ -82,13 +131,24 @@ canvas {
   left: 0;
   z-index: 0; 
 }
+
+/* ============================================
+   VIEWER - Contenedor del visor 3D
+   Posiciona: Mitad izquierda de la pantalla
+   ============================================ */
 #viewer {
   width: 50vw; 
   height: 100vh;
   float: left;   
 }
+
+/* ============================================
+   MENU-TOGGLE - Botón hamburguesa (oculto por defecto)
+   Posiciona: Esquina superior izquierda (fijo)
+   Organiza: Botón para abrir menú lateral en móviles
+   ============================================ */
 .menu-toggle {
-  display: none; /* Por defecto, oculto en escritorio */
+  display: none;
   position: fixed;
   top: 2%;
   left: 3%;
@@ -101,7 +161,11 @@ canvas {
   box-shadow: 0 4px 8px rgba(0,0,0,0.5);
 }
 
-/* Menú lateral cerrado (por defecto) */
+/* ============================================
+   WORKAREA - Menú lateral izquierdo con botones
+   Posiciona: Lado izquierdo, centrado verticalmente (fijo)
+   Organiza: Botones en columna vertical
+   ============================================ */
 #workarea {
   position: fixed;
   top: 25%;
@@ -117,19 +181,21 @@ canvas {
   z-index: 9998;
 }
 
-/* Menú lateral abierto */
-
+/* ============================================
+   SVG-WRAPPER - Contenedor de botones animados
+   Posiciona: Dentro del workarea, apilados verticalmente
+   Organiza: Botones con tamaño responsive
+   ============================================ */
 .svg-wrapper {
   margin-top: 17px; 
   margin-bottom: 10px;
   position: relative;
-  width: 150px;
-  height: 40px;
   width: clamp(120px, 15vw, 200px);
   height: clamp(35px, 4vw, 50px);
   border-radius: 5px;
 }
 
+/* Forma SVG del botón */
 #shape {
   stroke-width: 4px;
   fill: transparent;
@@ -138,6 +204,8 @@ canvas {
   stroke-dashoffset: -220;
   transition: 1s all ease;
 }
+
+/* Texto dentro del botón SVG */
 #text {
   margin-top: -35px; 
   transform: translate(5%);
@@ -148,12 +216,14 @@ canvas {
   text-align: center;
   top: 2%;
   font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-  background: linear-gradient(90deg, white, #8c8c8c,white);
+  background: linear-gradient(90deg, white, #8c8c8c, white);
   background-size: 200%;
   background-clip: text;
   color: transparent;
   animation: text-animation 4s infinite; 
 }
+
+/* Efecto hover en botones SVG */
 .svg-wrapper:hover #shape {
   stroke-dasharray: 50 0;
   stroke-width: 6px;
@@ -161,222 +231,95 @@ canvas {
   stroke: #f8b138;
 }
 
+/* ============================================
+   MODAL - Ventana emergente general
+   Posiciona: Cubre toda la pantalla con overlay oscuro
+   Organiza: Fondo semi-transparente negro
+   ============================================ */
 .modal {
-            display: none;
-            position: fixed;
-            z-index: 1;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgba(0,0,0,0.7);
-        }
-
-        .modal-contenido {
-            background-color: #fefefe;
-            margin: 15% auto;
-            padding: 20px;
-            border-radius: 10px;
-            width: 80%;
-            max-width: 500px;
-            position: relative;
-        }
-
-        .cerrar-modal {
-            color: #aaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-        }
-
-        .cerrar-modal:hover,
-        .cerrar-modal:focus {
-            color: black;
-            text-decoration: none;
-            cursor: pointer;
-        }
-
-        .modal-sobre-mi img {
-            max-width: 10%;
-            height: auto;
-            margin-top: 15px;
-            border-radius: 8px;
-        }
-#overlay {
-            position: absolute;
-            top: 80%;
-            left: 70vw;
-            width: 120%;
-            height: 25%;
-            display: flex;
-            background-color: rgba(98, 98, 98, 0.6);
-            justify-content: center;
-            align-items: center;
-            color: white;
-            font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-            font-size: 2em;
-            text-align: center;
-            cursor: pointer;
-            z-index: 1;
-            border-radius: 3rem;
-        }
-        .controles-moviles {
+  display: none;
   position: fixed;
-  bottom: 15%;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 10px;
-  z-index: 1000;
-}
-
-.controles-moviles div {
-  display: flex;
-  gap: 20px;
-}
-
-.controles-moviles button {
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  border: none;
-  background: #ff9700;
-  color: white;
-  font-size: 2rem;
-  font-weight: bold;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.5);
-}
-@media screen and (max-width: 768px) {
-html,
-body {
+  z-index: 1;
+  left: 0;
+  top: 0;
   width: 100%;
   height: 100%;
-}
- 
-a{
-   text-decoration: none;
-   text-align: center;
-  font-size: clamp(1rem, 3vw, 1.5rem);
-  top: 2%;
-  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-  background-size: 200%;
-  color: #fefefe;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.7);
 }
 
-h1{
-  position: absolute;
-  left: 3%;
-  transform: translateY(85vh);
-  z-index: 1;
-  text-align: center;
-  top: 2%;
-  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-  background-size: 200%;
-  color: white;
-  font-size: 1.5rem;
-  text-shadow: #000 1px 1px 2px;
-}
-
-@keyframes text-animation{
-  0%{
-    background-position: 0%;
-  }
-  100%{
-    background-position: 200%;
-  }
-}
-canvas {
+/* ============================================
+   MODAL-CONTENIDO - Contenido del modal
+   Posiciona: Centro de la pantalla
+   Organiza: Caja blanca con información
+   ============================================ */
+.modal-contenido {
+  background-color: #fefefe;
+  margin: 15% auto;
+  padding: 20px;
+  border-radius: 10px;
   width: 80%;
-  height: 80%;
-  display: block; 
-  position: absolute; 
-  top: 0;
-  left: 0;
-  z-index: 0; 
-}
-#viewer {
-  width: 50vw; 
-  height: 100vh;
-  float: left;   
-}
-  .menu-toggle {
-    display: flex !important;
-    justify-content: center !important;
-    align-items: center !important;
-  }
-
-  #workarea {
-    left: -100% !important;
-  }
-  #workarea.workarea-open {
-    left: 0;
-  }
-
-.svg-wrapper {
-  margin-top: 17px; 
-  margin-bottom: 10px;
+  max-width: 500px;
   position: relative;
-  width: 150px;
-  height: 40px;
-  width: clamp(120px, 15vw, 200px);
-  height: clamp(35px, 4vw, 50px);
-  border-radius: 5px;
 }
 
-#shape {
-  stroke-width: 4px;
-  fill: transparent;
-  stroke: #ff9700;
-  stroke-dasharray: 120 400;
-  stroke-dashoffset: -220;
-  transition: 1s all ease;
-}
-#text {
-  margin-top: -35px; 
-  transform: translate(5%);
+/* ============================================
+   CERRAR-MODAL - Botón X para cerrar modales
+   Posiciona: Esquina superior derecha del modal
+   Organiza: Icono flotante a la derecha
+   ============================================ */
+.cerrar-modal {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
 }
 
-#text a {
+.cerrar-modal:hover,
+.cerrar-modal:focus {
+  color: black;
   text-decoration: none;
-  text-align: center;
-  top: 2%;
-  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-  background: linear-gradient(90deg, white, #8c8c8c,white);
-  background-size: 200%;
-  background-clip: text;
-  color: transparent;
-  animation: text-animation 4s infinite; 
-}
-.svg-wrapper:hover #shape {
-  stroke-dasharray: 50 0;
-  stroke-width: 6px;
-  stroke-dashoffset: 0;
-  stroke: #f8b138;
+  cursor: pointer;
 }
 
+/* Imágenes dentro del modal "sobre mi" */
+.modal-sobre-mi img {
+  max-width: 10%;
+  height: auto;
+  margin-top: 15px;
+  border-radius: 8px;
+}
 
+/* ============================================
+   OVERLAY - Botón flotante de información
+   Posiciona: Parte inferior derecha de la pantalla
+   Organiza: Caja semi-transparente con texto grande
+   ============================================ */
 #overlay {
-            position: absolute;
-            top: 80%;
-            left: 70vw;
-            width: 120%;
-            height: 25%;
-            display: flex;
-            background-color: rgba(98, 98, 98, 0.6);
-            justify-content: center;
-            align-items: center;
-            color: white;
-            font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-            font-size: 2em;
-            text-align: center;
-            cursor: pointer;
-            z-index: 10;
-            border-radius: 3rem;
-        }
-        .controles-moviles {
+  position: absolute;
+  top: 80%;
+  left: 70vw;
+  width: 120%;
+  height: 25%;
+  display: flex;
+  background-color: rgba(98, 98, 98, 0.6);
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  font-size: 2em;
+  text-align: center;
+  cursor: pointer;
+  z-index: 1;
+  border-radius: 3rem;
+}
+
+/* ============================================
+   CONTROLES-MOVILES - Botones de navegación táctil
+   Posiciona: Centro inferior de la pantalla (fijo)
+   Organiza: Botones circulares en cruz (arriba, abajo, izq, der)
+   ============================================ */
+.controles-moviles {
   position: fixed;
   bottom: 15%;
   left: 50%;
@@ -403,6 +346,4 @@ canvas {
   font-size: 2rem;
   font-weight: bold;
   box-shadow: 0 4px 8px rgba(0,0,0,0.5);
-}
-
 }

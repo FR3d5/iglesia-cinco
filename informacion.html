@@ -6,19 +6,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-  <h1>INFORMACION</h1>
-  <section class="mapa" id="ubicacion">
-  <h2>Nuestra Ubicación</h2>
-  <p>Encuéntranos en el mapa:</p><br>
-  <div class="mapa-contenedor">
-  <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6366.152004154291!2d-66.58541359296181!3d-18.423018732820395!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x93fce076368fffff%3A0x64b6aa39e7ababab!2sNuestra%20Se%C3%B1ora%20de%20la%20Asunci%C3%B3n!5e0!3m2!1ses-419!2sbo!4v1751727455053!5m2!1ses-419!2sbo" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-  </div>
-  <p>Dirección: [HC7P+C5Q, Llallagua]</p>
-  </section>
-  
-  <div class="infor">
-    <h3>
-    <pre>
+  <div class="info-container">
+    <section class="mapa" id="ubicacion">
+      <h2>Nuestra Ubicación</h2>
+      <p>Encuéntranos en el mapa:</p><br>
+      <div class="mapa-contenedor">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6366.152004154291!2d-66.58541359296181!3d-18.423018732820395!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x93fce076368fffff%3A0x64b6aa39e7ababab!2sNuestra%20Se%C3%B1ora%20de%20la%20Asunci%C3%B3n!5e0!3m2!1ses-419!2sbo!4v1751727455053!5m2!1ses-419!2sbo" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+      <p>Dirección: [HC7P+C5Q, Llallagua]</p>
+    </section>
+    
+    <div class="infor">
+      <h3>
+      <pre>
 SERVICIOS:
 - bautizos
 - matrimonios
@@ -42,9 +42,10 @@ HORARIOS:
  07:30 a 09:00
  
 CONTACTO:  73812554
-  </pre>
-    </h3>
-    <a class="facebook" href="https://www.facebook.com/ParroquiaLlallagua/?locale=es_LA">FACEBOOK</a>
+    </pre>
+      </h3>
+      <a class="facebook" href="https://www.facebook.com/ParroquiaLlallagua/?locale=es_LA">FACEBOOK</a>
+    </div>
   </div>
   
 <button class="menu-toggle" id="openMenuBtn">
@@ -54,9 +55,7 @@ CONTACTO:  73812554
     </button>
   <script type="module" src="scriptinformacio.js"></script>
   <script>
-    // Enviar eventos de scroll al padre (index.html)
     window.addEventListener('wheel', function(event) {
-        // Enviar información del scroll al documento padre
         window.parent.postMessage({
             type: 'iframe-scroll',
             deltaY: event.deltaY

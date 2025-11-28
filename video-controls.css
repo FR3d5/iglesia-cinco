@@ -1,0 +1,240 @@
+/* ============================================
+   VIDEO-CONTROLS-CONTAINER - Contenedor de controles de video
+   Posiciona: Esquina inferior derecha de la pantalla (fijo)
+   Organiza: Panel de controles en esquina inferior derecha
+   ============================================ */
+#video-controls-container {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 5;
+  pointer-events: none;
+}
+
+/* ============================================
+   VIDEO-CONTROLS-PANEL - Panel de controles
+   Posiciona: Dentro del contenedor
+   Organiza: Caja oscura con glassmorphism
+   ============================================ */
+.video-controls-panel {
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 15px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  max-width: 500px;
+  min-width: 200px;
+
+  /* OCULTAR POR DEFECTO */
+  opacity: 0;
+  visibility: hidden;
+  transform: translateX(600px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  pointer-events: auto;
+}
+p{
+    color: white;
+}
+/* Estado visible de los controles */
+.video-controls-panel.mostrar {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(0);
+}
+
+/* ============================================
+   VIDEO-INFO - Información del tiempo del video
+   Posiciona: Parte superior del panel
+   Organiza: Texto centrado con fuente monoespaciada
+   ============================================ */
+.video-info {
+  color: #fff;
+  font-size: 12px;
+  margin-bottom: 8px;
+  text-align: center;
+  font-family: 'Courier New', monospace;
+  letter-spacing: 1px;
+}
+
+/* Tiempo actual y duración total en verde */
+#video-tiempo, #video-duracion-total {
+  color: #d4af37;
+  font-weight: bold;
+}
+
+/* Separador de duración en gris */
+.video-duracion {
+  color: #999;
+}
+
+/* ============================================
+   VIDEO-BARRA-PROGRESO - Contenedor de barra de progreso
+   Posiciona: Debajo de la información de tiempo
+   Organiza: Barra horizontal clickeable
+   ============================================ */
+.video-barra-progreso {
+  margin-bottom: 12px;
+}
+
+/* Barra de progreso base */
+.progress-bar {
+  width: 100%;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 3px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Relleno de progreso animado */
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #d4af37, #f4d03f);
+  border-radius: 3px;
+  width: 0%;
+  transition: width 0.1s linear;
+}
+
+/* ============================================
+   VIDEO-BOTONES - Contenedor de botones de control
+   Posiciona: Centro del panel
+   Organiza: Botones en fila horizontal con espaciado
+   ============================================ */
+.video-botones {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+}
+
+/* ============================================
+   BTN-VIDEO - Botones de control individuales
+   Organiza: Botones semi-transparentes con hover
+   ============================================ */
+.btn-video {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: white;
+  padding: 8px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: all 0.2s ease;
+  min-width: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-video:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.5);
+  transform: translateY(-2px);
+}
+
+.btn-video:active {
+  transform: translateY(0);
+}
+
+/* ============================================
+   SEPARADOR-CONTROLES - Línea divisoria vertical
+   Posiciona: Entre grupos de botones
+   Organiza: Línea delgada semi-transparente
+   ============================================ */
+.separador-controles {
+  width: 1px;
+  height: 24px;
+  background: rgba(255, 255, 255, 0.3);
+  margin: 0 4px;
+}
+
+/* ============================================
+   SLIDER-VOLUMEN - Control deslizante de volumen
+   Posiciona: Entre los botones de control
+   Organiza: Barra horizontal con thumb circular
+   ============================================ */
+.slider-volumen {
+  width: 80px;
+  height: 4px;
+  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.2);
+  outline: none;
+  cursor: pointer;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+/* Thumb del slider para navegadores webkit */
+.slider-volumen::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #d4af37;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.slider-volumen::-webkit-slider-thumb:hover {
+  background: #f4d03f;
+  transform: scale(1.2);
+}
+
+/* Thumb del slider para Firefox */
+.slider-volumen::-moz-range-thumb {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #d4af37;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s ease;
+}
+
+.slider-volumen::-moz-range-thumb:hover {
+  background: #f4d03f;
+  transform: scale(1.2);
+}
+
+/* ============================================
+   VIDEO-VELOCIDAD - Control de velocidad de reproducción
+   Posiciona: Parte inferior del panel
+   Organiza: Label y selector en línea horizontal
+   ============================================ */
+.video-velocidad {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.video-velocidad label {
+  color: #fff;
+  font-size: 12px;
+  font-family: Arial, sans-serif;
+}
+
+/* Selector de velocidad */
+.select-velocidad {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: white;
+  padding: 4px 8px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 12px;
+  outline: none;
+}
+
+.select-velocidad:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.select-velocidad option {
+  background: #333;
+  color: white;
+}

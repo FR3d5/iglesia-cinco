@@ -1,27 +1,40 @@
+
 <!doctype html>
 <html lang="es">
 <head>
   <meta charset="UTF-8">
   <title>PARROQUIA</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <link rel="stylesheet" media="all" href="style.css" />
+  <link rel="stylesheet" href="loading-indicator.css" />
+  <link rel="stylesheet" href="video-controls.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
 <body>
+<div id="loading-overlay" class="loading-overlay">
+  <div class="loading-spinner"></div>
+  <div class="loading-text">Cargando Modelos 3D</div>
+  <div class="loading-progress" id="loading-progress">0%</div>
+  <div class="loading-bar-container">
+    <div class="loading-bar" id="loading-bar"></div>
+  </div>
+</div>
+
 <header style="width: 100%;">
   <div class="flex-container">
-    <div style="flex-grow: 8;"><img class="cruz" src="./public/img/logo.jpg"></div>
+    <div style="flex-grow: 6;"><img class="cruz" src="./public/img/logo.jpg"></div>
     <div style="flex-grow: 1;"><a href="#" id="abrir-modal-sobre-mi">SOBRE MÍ</a></div>
     <div style="flex-grow: 1;"><a href="#" id="abrir-modal-contacto">CONTACTO</a></div>
+    <div style="flex-grow: 1;"><button type="button" class="boton-luz">Modos luz</button></div>
   </div>
 </header>
 
 <div id="modal-sobre-mi" class="modal">
-  <div class="modal-contenido">
+  <div class="modal-contenido-sobre-mi">
     <span class="cerrar-modal">&times;</span>
     <img src="./public/img/fotofreds.jpg" alt="Foto de contacto">
-    <h3>Freds Cazorla Juyari</h3><br><br>
+    <h3>Freds Cazorla Juyari</h3><br>
     <h5><i class="fa-solid fa-phone"></i> 63467676</h5><br>
     <h5><i class="fa-solid fa-envelope"></i> fredsc.juyari@gmail.com</h5><br>
     <h5><i class="fa-solid fa-location-dot"></i> Enrique Fernández Nro. 38</h5><br>
@@ -31,9 +44,8 @@
 </div>
 
 <div id="modal-contacto" class="modal">
-  <div class="modal-contenido">
+  <div class="modal-contenido-contacto">
     <span class="cerrar-modal">&times;</span>
-    <h2>¿Qué podemos hacer por usted?</h2>
     <form>
       <label>Nombre*</label>
       <input class="input" type="text" placeholder="Fred">
@@ -109,7 +121,8 @@
 <a-scene embedded style="display:none;" vr-mode-ui="enabled: false" renderer="logarithmicDepthBuffer: true;">
   <a-entity id="gyroCam" camera look-controls="touchEnabled: false; magicWindowTrackingEnabled: true;"></a-entity>
 </a-scene>
-<button type="button" class="boton-luz">Modos luz</button>
 <script type="module" src="scriptinterior.js"></script>
+<script type="module" src="video-functions.js"></script>
 </body>
 </html>
+

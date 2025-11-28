@@ -4,40 +4,61 @@
   <title>PARROQUIA</title>
   <link rel="stylesheet" media="all" href="stylegaleria.css" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 </head>
 <body>
-  <h1>Galeria</h1>
-<div class="row">
-      <div class="column">
-      <img src="./public/img/foto.png" style="width: 100%; ">
-      <img src="./public/img/foto2.jpg" style="width: 100%;">
+  <div class="gallery-container">
+    <div class="gallery-item">
+      <img src="./public/img/foto.png" alt="Foto 1">
     </div>
-      <div class="column">
-      <img src="./public/img/foto3.jpg" style="width: 100%;">
-      <img src="./public/img/foto4.jpg" style="width: 100%;">
-      
-      </div>
-      <div class="column">
-      <img src="./public/img/foto1.jpg" style="width: 100%;">
-      <img src="./public/img/foto5.jpeg" style="width: 100%;">
-      </div>
+    <div class="gallery-item">
+      <img src="./public/img/foto2.jpg" alt="Foto 2">
     </div>
-    <button class="menu-toggle" id="openMenuBtn">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="#000" class="w-6 h-6">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
-        </svg>
-    </button>
+    <div class="gallery-item">
+      <img src="./public/img/foto3.jpg" alt="Foto 3">
+    </div>
+    <div class="gallery-item">
+      <img src="./public/img/foto4.jpg" alt="Foto 4">
+    </div>
+    <div class="gallery-item">
+      <img src="./public/img/foto1.jpg" alt="Foto 5">
+    </div>
+    <div class="gallery-item">
+      <img src="./public/img/foto5.jpeg" alt="Foto 6">
+    </div>
+    <div class="gallery-item">
+      <img src="./public/img/foto6.png" alt="Foto 7">
+    </div>
+    <div class="gallery-item">
+      <img src="./public/img/foto7.jpg" alt="Foto 8">
+    </div>
+    <div class="gallery-item">
+      <img src="./public/img/foto8.jpg" alt="Foto 9">
+    </div>
+    <div class="gallery-item">
+      <img src="./public/img/foto9.jpg" alt="Foto 10">
+    </div>
+    <div class="gallery-item">
+      <img src="./public/img/foto10.jpg" alt="Foto 11">
+    </div>
+    <div class="gallery-item">
+      <img src="./public/img/foto 11.jpg" alt="Foto 12">
+    </div>
+    <div class="gallery-item">
+      <img src="./public/img/foto12.jpg" alt="Foto 13">
+    </div>
+    <div class="gallery-item">
+      <img src="./public/img/foto13.jpg" alt="Foto 14">
+    </div>
+  </div>
+
   <script type="module" src="scriptgaleria.js"></script>
-    <script>
-    // Enviar eventos de scroll al padre (index.html)
+  <script>
     window.addEventListener('wheel', function(event) {
-        // Enviar información del scroll al documento padre
-        window.parent.postMessage({
-            type: 'iframe-scroll',
-            deltaY: event.deltaY
-        }, '*');
+      window.parent.postMessage({
+        type: 'iframe-scroll',
+        deltaY: event.deltaY
+      }, '*');
     });
-</script>
+  </script>
 </body>
 </html>

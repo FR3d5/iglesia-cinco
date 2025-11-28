@@ -1,272 +1,120 @@
+/* RESET */
 * {
   margin: 0;
   padding: 0;
-  box-sizing: border-box; 
+  box-sizing: border-box;
 }
+
+
+/* HTML Y BODY */
 html,
 body {
   width: 100%;
   height: 100%;
-  overflow-x: hidden; 
+  overflow: hidden;
+  background-color: transparent;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 body::-webkit-scrollbar {
   display: none;
 }
-a{
-   text-decoration: none;
-   text-align: center;
-  font-size: clamp(1rem, 3vw, 1.5rem);
-  top: 2%;
-  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-  background-size: 200%;
-  color: #fefefe;
-}
-
-h1{
-  position: absolute;
-  left: 3%;
-  transform: translateY(85vh);
-  z-index: 1;
-  text-align: center;
-  top: 2%;
-  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-  background-size: 200%;
-  color: white;
-  text-shadow: #000000 2px 2px 4px;
-}
-
-@keyframes text-animation{
-  0%{
-    background-position: 0%;
-  }
-  100%{
-    background-position: 200%;
-  }
-}
-canvas {
-  display: block; 
-  position: absolute; 
-  z-index: 0; 
-  left: -3%;
-
-}
-#viewer {
-  width: 50vw;   /* 50% del ancho de la ventana */
-  height: 100vh; /* alto completo */
-  float: left;   /* para que se acomode al lado */
-}
-#workarea {
-  position: absolute;
-  width: 15%; 
-  height: 100%;
-  left: 2.5%;
-  z-index: 10; 
-  background-color: transparent;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
-  display: flex;
-  flex-direction: column;
-  justify-content: center; 
-  align-items: flex-start;
-  padding-left: 2%; 
-}
-.svg-wrapper {
-  margin-top: 17px; 
-  margin-bottom: 10px;
+/* TÍTULO */
+h1 {
   position: relative;
-  width: 150px;
-  height: 40px;
-  width: clamp(120px, 15vw, 200px);
-  height: clamp(35px, 4vw, 50px);
-  border-radius: 5px;
-}
-
-#shape {
-  stroke-width: 4px;
-  fill: transparent;
-  stroke: #ff9700;
-  stroke-dasharray: 120 400;
-  stroke-dashoffset: -220;
-  transition: 1s all ease;
-}
-#text {
-  margin-top: -35px; 
-  transform: translate(5%);
-}
-
-#text a {
-  text-decoration: none;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  font-family: 'Cinzel', serif;
+  font-size: clamp(2rem, 4vw, 3rem);
+  color: #FDFDD0;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  z-index: 10;
   text-align: center;
-  top: 2%;
-  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-  background: linear-gradient(90deg, white, #8c8c8c,white);
-  background-size: 200%;
-  background-clip: text;
-  color: transparent;
-  animation: text-animation 4s infinite; 
-}
-.svg-wrapper:hover #shape {
-  stroke-dasharray: 50 0;
-  stroke-width: 6px;
-  stroke-dashoffset: 0;
-  stroke: #f8b138;
 }
 
-
-.row {
-  position: absolute;
-    width: 60%; /* El contenedor ocupa el 100% del ancho de la pantalla */
-    height: 80%;
-    display: flex;
-    justify-content: center;
-    gap: 16px;
-    overflow-x: scroll;
-    scrollbar-color: #4a4a4a00 #33333300;
-    max-width: 1200px;
-    max-height: 600px;
-    margin: 0 auto;
-    z-index: 2;
-    top: 5% !important;
-    left: 45%;
-}
-/* Estilo para las columnas */
-.column {
-    display: flex;
-    flex-direction: column;
-    flex: 33%; /* Cada columna ocupa el 25% del ancho de la fila */
-    max-width: 25%;
-    padding: 2px 4px;
-    box-sizing: border-box; /* Asegura que el padding se incluya en el ancho */
+/* GALERIA */
+.gallery-container {
+  width: 95%;
+  height: 90vh;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 15px;
+  padding: 10px;
+  overflow: hidden;
+  align-content: center;
 }
 
-/* Estilo para las imágenes dentro de las columnas */
-.column img {
-    margin-top: 8px;
-    padding: 3px; /* Usar un valor único para un padding uniforme */
-    width: 100%; /* La imagen ocupa el 100% del ancho de la columna */
-    height: auto; /* La altura se ajusta automáticamente */
-    border-radius: 8px; /* Bordes redondeados */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 1);
+@media (max-width: 768px) {
+  .gallery-container {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(3, 1fr);
   }
-  .column img:hover {
-            transform: scale(1.05);
-        }
-
-@media screen and (max-width: 768px) {
- * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box; 
 }
-html,
-body {
-  background-image: url(./public/img/technology.jpg);
-  background-color: #000000;
+
+@media (max-width: 480px) {
+  .gallery-container {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    overflow-y: auto;
+    display: block;
+  }
+  .gallery-item {
+    height: 200px;
+    margin-bottom: 10px;
+  }
+}
+
+/* GALLERY ITEMS */
+.gallery-item {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+  background: rgba(0, 0, 0, 0.2);
   width: 100%;
   height: 100%;
-  /* Importante: Mantener overflow: hidden solo para escritorio si es necesario */
-  overflow-x: hidden; 
-  position: relative;
-  display: flex;
-  background-repeat: no-repeat;
-  background-size: cover; 
-}
-canvas {
-  display: block; 
-  position: absolute; 
-  z-index: 0; 
-  left: 0;
-}
-  /* Botón hamburguesa */
-  .menu-toggle {
-    display: flex !important;
-    position: fixed;
-    top: 80%;
-    left: 15px;
-    background: #ff9700;
-    padding: 10px;
-    border-radius: 8px;
-    z-index: 100;
-    cursor: pointer;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.5);
-  }
-
-  /* Menú lateral */
-  #workarea {
-    position: fixed !important; 
-    width: 40% !important;  /* más ancho en móvil */
-    height: 100% !important;
-    top: 0 !important;
-    left: -100% !important; /* oculto fuera */
-    z-index: 99;
-    background-color: #000000e6;
-    flex-direction: column;
-    justify-content: flex-start;
-    padding: 60px 20px;
-    transition: left 0.3s ease-in-out; /* más fluido */
-  }
-
-  /* Cuando se abre */
-  #workarea.workarea-open {
-    left: 0 !important;
-  }
-
-  /* Ajustes de títulos */
-  h1, h2 {
-    position: relative !important;
-    transform: none !important;
-    font-size: 1.2rem;
-    margin: 10px 0;
-    text-align: left;
-    top: 87%; 
-    width: 16%;
-    height: 3%;
-  }
-.svg-wrapper {
-      width: 100px;
-      height: 35px;
-      margin: 50px 0;
-      top: 50%;
-  }
-  .svg-wrapper:first-child {
-      margin-left: 0;
-  }
-  .svg-wrapper:last-child {
-      margin-right: 0;
-  }
-  .row {
-    width: 100%; /* El contenedor ocupa el 100% del ancho de la pantalla */
-    position: absolute;
-    height: 37%;
-    justify-content: center;
-    gap: 16px;
-    overflow-x: scroll;
-    scrollbar-color: #4a4a4a00 #33333300;
-    max-width: 1200px;
-    max-height: 600px;
-    margin: 0 auto;
-    z-index: 2;
-    top: 50% !important;
-}
-/* Estilo para las columnas */
-.column {
-    display: flex;
-    flex-direction: column;
-    flex: 33%; /* Cada columna ocupa el 25% del ancho de la fila */
-    max-width: 25%;
-    padding: 2px 4px;
-    box-sizing: border-box; /* Asegura que el padding se incluya en el ancho */
 }
 
-/* Estilo para las imágenes dentro de las columnas */
-.column img {
-    margin-top: 8px;
-    padding: 3px; /* Usar un valor único para un padding uniforme */
-    width: 100%; /* La imagen ocupa el 100% del ancho de la columna */
-    height: auto; /* La altura se ajusta automáticamente */
-    border-radius: 8px; /* Bordes redondeados */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 1);
-  }
-  .column img:hover {
-            transform: scale(1.05);
-        }
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+  display: block;
+}
+
+/* HOVER */
+.gallery-item:hover {
+  transform: scale(1.02);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
+  border: 2px solid #D4AF37;
+  z-index: 10;
+}
+
+.gallery-item:hover img {
+  transform: scale(1.1);
+}
+
+/* MENU TOGGLE */
+.menu-toggle {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #D4AF37;
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
 }
